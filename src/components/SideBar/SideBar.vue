@@ -2,11 +2,21 @@
         .side-bar-bg {
         background-color: aliceblue;
         height: 562px;
-
     }
+    .layout-sidebar {
+        height: 562px;
+        background-color: transparent;
+    }
+
+    .deviation-list {
+    /* min-width: var(--sidebar-width); */
+    width: 100%;
+    border-right: 1px solid #e2edfa;
+}
+
 </style>
 <template>
-    <section class="side-bar-bg">
+    <section class="layout-sidebar deviation-list">
         <div class="ps-5 pt-5">
         <ul>
             <li>Fruits & Vegetables

@@ -8,7 +8,7 @@ import NavBar from './components/NavBar/NavBar.vue';
 <template>
   <NavBar></NavBar>
   <div class="grid grid-cols-12 gap-4">
-    <div class="col-span-3 border-r-2 border-indigo-600 z-10">
+    <div class="col-span-3 ">
       <SideBar></SideBar>
     </div>
     <div class="col-span-9">
@@ -18,3 +18,4 @@ import NavBar from './components/NavBar/NavBar.vue';
 </template>
 
 <style scoped></style>
+<!-- border-r-2 border-indigo-600 z-10 -->
