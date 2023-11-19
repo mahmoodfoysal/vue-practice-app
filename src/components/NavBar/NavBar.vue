@@ -2,7 +2,7 @@
 <template>
     <Disclosure as="nav" class="bg-gray-800 lg:px-8 sticky top-0 z-40" v-slot="{ open }">
         <div class="mx-auto max-w-7xl px-2 sm:px-6">
-            <div class="relative flex h-16 items-center justify-between">
+            <div class="relative flex h-12 items-center justify-between">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                     <!-- Mobile menu button-->
                     <DisclosureButton
@@ -15,7 +15,7 @@
                 </div>
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex flex-shrink-0 items-center">
-                        <h4 class="text-3xl text-white">Vue Practice</h4>
+                        <h4 class="text-xl text-white">Vue Practice</h4>
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
