@@ -18,8 +18,8 @@ const enabled = ref(false)
     <Disclosure as="nav" class="bg-[white] sticky top-0 z-40" v-slot="{ open }">
         <div class="mx-auto max-w-7xl px-2 sm:px-2">
             <div class="relative flex h-12 items-center sm:justify-between md:justify-between">
-                <div class="flex flex-shrink-0 items-center">
-                    <h4 class="text-xl text-[#6518D8] font-bold">K-WD</h4>
+                <div class="flex flex-shrink-0 items-center justify-items-center">
+                    <h4 class="text-xl text-[#6518D8] font-bold lg:visible md:visible invisible">K-WD</h4>
                 </div>
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                     <!-- Mobile menu button-->
@@ -31,10 +31,10 @@ const enabled = ref(false)
                         <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
                     </DisclosureButton>
                 </div>
-                <div class="flex flex-1 items-center sm:justify-end sm:items-stretch lg:justify-end xs:justify-center">
+                <div class="flex flex-1 items-center sm:justify-end sm:items-stretch lg:justify-end justify-center">
 
                     <div class="">
-                        <div class="flex lg:space-x-4 md:space-x-4 sm:space-x-4 flex-end">
+                        <div class="flex sm:space-x-4 md:space-x-4  space-x-4 flex-end">
                             <!-- <a v-for="item in navigation" :key="item.name" :href="item.href"
                                     :class="[item.current ? 'bg-gray-900 text-white' : 'text-[black] hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium']"
                                     :aria-current="item.current ? 'page' : undefined">
