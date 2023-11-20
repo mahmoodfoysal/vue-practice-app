@@ -38,18 +38,19 @@
 }
 </style>
 <template>
-    <section class="main-container bg-[#f3f3f3] rounded-lg py-2 w-[98%] h-[100%] overflow-hidden">
-        <div class="flex justify-between border-b-2 border-#e2edfa pb-3">
-            <h4 class="text-2xl decoration-gray-900 mx-5">Deshboard</h4>
-            <button class="text-white bg-violet-700 rounded p-2 mx-5">Go To Website</button>
+    <NavBar></NavBar>
+    <section class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
+        <div class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
+            <h4 class="text-2xl text-[#101833] mx-5 font-medium">Dashboard</h4>
+            <button class="text-white bg-[#7C3AED] rounded-md px-[15px] mx-5 text-xs">Go To Website</button>
         </div>
 
         <!-- value, user, ticket  -->
         <section class="flex gap-x-5 px-5 mt-5">
             <div class="flex items-center justify-between w-1/4 rounded-lg px-4 box-border bg-[#FFFFFF] z-10 h-16">
                 <div>
-                    <p class="text-xs">Value</p>
-                    <h6 class="text-sm">$30,000</h6>
+                    <p class="text-xs text-[#D1D5DB] font-bold">VALUE</p>
+                    <h6 class="text-sm text-[#596F92] font-semibold">$30,000</h6>
                 </div>
                 <span class="material-icons dollar-icon">
                     monetization_on
@@ -57,8 +58,8 @@
             </div>
             <div class="flex items-center justify-between w-1/4 rounded-lg px-4 box-border bg-[#FFFFFF] z-10">
                 <div>
-                    <p class="text-xs">Users</p>
-                    <h6 class="text-sm">50,021</h6>
+                    <p class="text-xs text-[#D1D5DB] font-bold">USERS</p>
+                    <h6 class="text-sm text-[#596F92] font-semibold">50,021</h6>
                 </div>
                 <span class="material-icons user-icon">
                     groups
@@ -66,8 +67,8 @@
             </div>
             <div class="flex items-center justify-between w-1/4 rounded-lg px-4 box-border bg-[#FFFFFF] z-10">
                 <div>
-                    <p class="text-xs">Stock</p>
-                    <h6 class="text-sm">45021</h6>
+                    <p class="text-xs text-[#D1D5DB] font-bold">STOCK</p>
+                    <h6 class="text-sm text-[#596F92] font-semibold">45021</h6>
                 </div>
                 <span class="material-icons stock-icon">
                     trending_up
@@ -75,19 +76,21 @@
             </div>
             <div class="flex items-center justify-between w-1/4 rounded-lg px-4 box-border bg-[#FFFFFF] z-10">
                 <div>
-                    <p class="text-xs">Ticket</p>
-                    <h6 class="text-sm">20516</h6>
+                    <p class="text-xs text-[#D1D5DB] font-bold">TICKET</p>
+                    <h6 class="text-sm text-[#596F92] font-semibold">20516</h6>
                 </div>
                 <span class="material-icons ticket-icon">
                     confirmation_number
                 </span>
             </div>
         </section>
-
+        
     </section>
 </template>
 
 
 <script setup>
+import NavBar from '../../NavBar/NavBar.vue';
+
 
 </script>

@@ -6,16 +6,14 @@ import NavBar from './components/NavBar/NavBar.vue';
 </script>
 
 <template>
-  <NavBar></NavBar>
-  <div class="grid grid-cols-12 gap-4">
-    <div class="col-span-3 ">
+  <div class="grid grid-cols-12">
+    <div class="col-span-2 ">
       <SideBar></SideBar>
     </div>
-    <div class="col-span-9">
+    <div class="col-span-10">
       <Home></Home>
     </div>
   </div>
 </template>
 
 <style scoped></style>
-<!-- border-r-2 border-indigo-600 z-10 -->
