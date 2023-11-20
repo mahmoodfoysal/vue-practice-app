@@ -1,4 +1,10 @@
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
+
+.dashboard-text {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+}
 .main-container {
     box-shadow: 0px 0px 8px rgba(2, 108, 209, 0.1);
 }
@@ -41,7 +47,7 @@
     <NavBar></NavBar>
     <section class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
         <div class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
-            <h4 class="text-2xl text-[#101833] mx-5 font-medium">Dashboard</h4>
+            <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Dashboard</h4>
             <button class="text-white bg-[#7C3AED] rounded-md px-[15px] mx-5 text-xs">Go To Website</button>
         </div>
 
