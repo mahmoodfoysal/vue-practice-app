@@ -1,46 +1,23 @@
-<style scoped>
-.setting-icon {
-    text-align: center;
-    font-size: 20px;
-    border-radius: 50%;
-    background: #F6F3FF;
-    color: #A88DFA;
-    vertical-align: middle;
-    padding: 7px;
-}
+<script setup>
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { ref } from 'vue'
+import { Switch } from '@headlessui/vue'
 
-.search-icon {
-    text-align: center;
-    font-size: 20px;
-    border-radius: 50%;
-    background: #F6F3FF;
-    color: #A88DFA;
-    vertical-align: middle;
-    padding: 7px;
-}
-.moon-icon {
-    text-align: center;
-    font-size: 20px;
-    border-radius: 50%;
-    background: #F6F3FF;
-    color: #A88DFA;
-    vertical-align: middle;
-}
+const navigation = [
+    { name: 'Home', href: '#', current: true },
+    { name: 'District', href: '#', current: false },
+    { name: 'Contact', href: '#', current: false },
+    { name: 'About US', href: '#', current: false },
+]
 
-.notification-icon {
-    text-align: center;
-    font-size: 20px;
-    border-radius: 50%;
-    background: #F6F3FF;
-    color: #A88DFA;
-    vertical-align: middle;
-    padding: 7px;
-}
-</style>
+
+const enabled = ref(false)
+</script>
 <template>
     <Disclosure as="nav" class="bg-[white] sticky top-0 z-40" v-slot="{ open }">
         <div class="mx-auto max-w-7xl px-2 sm:px-2">
-            <div class="relative flex h-12 items-center justify-between">
+            <div class="relative flex h-12 items-center sm:justify-between md:justify-between">
                 <div class="flex flex-shrink-0 items-center">
                     <h4 class="text-xl text-[#6518D8] font-bold">K-WD</h4>
                 </div>
@@ -54,10 +31,10 @@
                         <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
                     </DisclosureButton>
                 </div>
-                <div class="flex flex-1 items-center justify-center sm:items-stretch lg:justify-end">
+                <div class="flex flex-1 items-center sm:justify-end sm:items-stretch lg:justify-end xs:justify-center">
 
-                    <div class="hidden sm:block">
-                        <div class="flex space-x-4 flex-end">
+                    <div class="">
+                        <div class="flex lg:space-x-4 md:space-x-4 sm:space-x-4 flex-end">
                             <!-- <a v-for="item in navigation" :key="item.name" :href="item.href"
                                     :class="[item.current ? 'bg-gray-900 text-white' : 'text-[black] hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium']"
                                     :aria-current="item.current ? 'page' : undefined">
@@ -147,19 +124,45 @@
     </Disclosure>
 </template>
   
-<script setup>
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
-import { ref } from 'vue'
-import { Switch } from '@headlessui/vue'
-
-const navigation = [
-    { name: 'Home', href: '#', current: true },
-    { name: 'District', href: '#', current: false },
-    { name: 'Contact', href: '#', current: false },
-    { name: 'About US', href: '#', current: false },
-]
 
 
-const enabled = ref(false)
-</script>
+
+<style scoped>
+.setting-icon {
+    text-align: center;
+    font-size: 20px;
+    border-radius: 50%;
+    background: #F6F3FF;
+    color: #A88DFA;
+    vertical-align: middle;
+    padding: 7px;
+}
+
+.search-icon {
+    text-align: center;
+    font-size: 20px;
+    border-radius: 50%;
+    background: #F6F3FF;
+    color: #A88DFA;
+    vertical-align: middle;
+    padding: 7px;
+}
+.moon-icon {
+    text-align: center;
+    font-size: 20px;
+    border-radius: 50%;
+    background: #F6F3FF;
+    color: #A88DFA;
+    vertical-align: middle;
+}
+
+.notification-icon {
+    text-align: center;
+    font-size: 20px;
+    border-radius: 50%;
+    background: #F6F3FF;
+    color: #A88DFA;
+    vertical-align: middle;
+    padding: 7px;
+}
+</style>
