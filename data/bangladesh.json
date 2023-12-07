@@ -1,0 +1,152 @@
+[
+    {
+        "div_id": 1,
+        "division_name": "Rajshahi",
+        "division_information": [
+            {
+                "dis_id": 1,
+                "district_name": "Rajshahi",
+                "info": [
+                    {
+                        "id": 1,
+                        "person": "Foysal Mahmood",
+                        "age": 26,
+                        "address": "63, new bilsimla, rajshahi",
+                        "designation": "Student",
+                        "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+                    },
+                    {
+                        "id": 2,
+                        "person": "Ahashan Habib Saikot",
+                        "age": 26,
+                        "address": "64, new bilsimla, rajshahi",
+                        "designation": "Student",
+                        "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+                    }
+                ]
+            },
+            {
+                "dis_id": 2,
+                "district_name": "nator",
+                "info": [
+                    {
+                        "id": 1,
+                        "person": "Tahmid Onim",
+                        "age": 28,
+                        "address": "Nator",
+                        "designation": "Engineer",
+                        "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+                    },
+                    {
+                        "id": 2,
+                        "person": "Toton Ovi",
+                        "age": 35,
+                        "address": "Tomal-tola, Nator",
+                        "designation": "Doctor",
+                        "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "div_id": 2,
+        "division_name": "Dhaka",
+        "division_information": [
+            {
+                "dis_id": 1,
+                "district_name": "Dhaka",
+                "info": [
+                    {
+                        "id": 1,
+                        "person": "Sagor",
+                        "age": 32,
+                        "address": "Dhaka",
+                        "designation": "Businessman",
+                        "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+                    },
+                    {
+                        "id": 2,
+                        "person": "Akash",
+                        "age": 26,
+                        "address": "Dhaka",
+                        "designation": "Engineer",
+                        "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+                    }
+                ]
+            },
+            {
+                "dis_id": 2,
+                "district_name": "Savar",
+                "info": [
+                    {
+                        "id": 1,
+                        "person": "Tahmid Onim",
+                        "age": 28,
+                        "address": "Savar",
+                        "designation": "Engineer",
+                        "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+                    },
+                    {
+                        "id": 2,
+                        "person": "Toton Ovi",
+                        "age": 35,
+                        "address": "Savar",
+                        "designation": "Doctor",
+                        "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "div_id": 3,
+        "division_name": "Sylet",
+        "division_information": [
+            {
+                "dis_id": 1,
+                "district_name": "Sylet",
+                "info": [
+                    {
+                        "id": 1,
+                        "person": "Manik",
+                        "age": 32,
+                        "address": "Sylet",
+                        "designation": "Businessman",
+                        "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+                    },
+                    {
+                        "id": 2,
+                        "person": "Ahad",
+                        "age": 26,
+                        "address": "Sylet",
+                        "designation": "Engineer",
+                        "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+                    }
+                ]
+            },
+            {
+                "dis_id": 2,
+                "district_name": "Sunamgong",
+                "info": [
+                    {
+                        "id": 1,
+                        "person": "Ornab",
+                        "age": 28,
+                        "address": "Sunamgong",
+                        "designation": "Engineer",
+                        "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+                    },
+                    {
+                        "id": 2,
+                        "person": "Sakhoat",
+                        "age": 35,
+                        "address": "Sunamgong",
+                        "designation": "Doctor",
+                        "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+                    }
+                ]
+            }
+        ]
+    }
+]

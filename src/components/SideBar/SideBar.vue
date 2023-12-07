@@ -1,23 +1,6 @@
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
-.layout-sidebar {
-    height: 562px;
-    background-color: transparent;
-}
+<script setup>
 
-.deviation-list {
-    border-right: 1px solid #e2edfa;
-}
-.sub-menu li{
-    margin: 10px 0;
-    color: #B0C6D4;
-    cursor: pointer;
-}
-.font-side {
-    font-family: 'Heebo', sans-serif;
-    font-size: 14px;
-}
-</style>
+</script>
 <template>
     <section class="layout-sidebar deviation-list w-[100%] px-2 pt-[5px]">
         <div id="accordion-collapse" data-accordion="collapse">
@@ -103,6 +86,25 @@
     </section>
 </template>
 
-<script setup>
 
-</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
+.layout-sidebar {
+    height: 562px;
+    background-color: transparent;
+}
+
+.deviation-list {
+    border-right: 1px solid #e2edfa;
+}
+.sub-menu li{
+    margin: 10px 0;
+    color: #B0C6D4;
+    cursor: pointer;
+}
+.font-side {
+    font-family: 'Heebo', sans-serif;
+    font-size: 14px;
+}
+</style>
