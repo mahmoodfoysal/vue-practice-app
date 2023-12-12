@@ -27,7 +27,7 @@
             },
             {
                 "dis_id": 2,
-                "district_name": "nator",
+                "district_name": "Nator",
                 "info": [
                     {
                         "id": 1,
@@ -54,7 +54,7 @@
         "division_name": "Dhaka",
         "division_information": [
             {
-                "dis_id": 1,
+                "dis_id": 3,
                 "district_name": "Dhaka",
                 "info": [
                     {
@@ -76,7 +76,7 @@
                 ]
             },
             {
-                "dis_id": 2,
+                "dis_id": 4,
                 "district_name": "Savar",
                 "info": [
                     {
@@ -104,7 +104,7 @@
         "division_name": "Sylet",
         "division_information": [
             {
-                "dis_id": 1,
+                "dis_id": 5,
                 "district_name": "Sylet",
                 "info": [
                     {
@@ -126,7 +126,7 @@
                 ]
             },
             {
-                "dis_id": 2,
+                "dis_id": 6,
                 "district_name": "Sunamgong",
                 "info": [
                     {
