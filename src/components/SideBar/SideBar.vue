@@ -1,11 +1,20 @@
 <script setup>
-const props = defineProps(['data']);
-console.log(props.data);
+import {toRefs } from 'vue';
+const props = defineProps({
+    countryInfo:{
+        type: Array,
+        default: null
+    }
+});
+
+const { countryInfo } = toRefs(props)
+
+console.log(props);
 </script>
 <template>
     <section class="layout-sidebar deviation-list w-[100%] px-2 pt-[5px]">
         <div id="accordion-collapse" data-accordion="collapse">
-           <div v-for="division in props.data" :key="division.div_id">
+           <div v-for="division in countryInfo" :key="division.div_id">
             <h2 :id="`accordion-collapse-heading-${division.div_id}`">
                 <button type="button"
                     class="flex items-center justify-between w-full p-2 font-medium rtl:text-right text-gray-500   border-gray-200 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 focus:rounded-[12px] dark:hover:bg-gray-800 gap-3"
