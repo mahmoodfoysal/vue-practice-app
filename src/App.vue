@@ -2,8 +2,16 @@
 import SideBar from './components/SideBar/SideBar.vue';
 import NavBar from './components/NavBar/NavBar.vue';
 import Home from './components/Home/Home.vue';
-
 import bangladesh from '/data/bangladesh.json';
+import { ref } from 'vue';
+
+const receivedData = ref('');
+
+const receiveData = (data) => {
+  receivedData.value = data;
+  console.log(data)
+};
+
 </script>
 
 <template>
@@ -14,7 +22,7 @@ import bangladesh from '/data/bangladesh.json';
     <div class="lg:col-span-10 md:col-span-10 sm:col-span-12">
       <NavBar></NavBar>
       <!-- Main Section -->
-      <Home></Home>
+      <Home @sent-district="receiveData"></Home>
     </div>
   </div>
 </template>

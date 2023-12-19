@@ -1,15 +1,22 @@
 <script setup>
-import {toRefs } from 'vue';
+import {toRefs, defineEmits , ref} from 'vue';
 const props = defineProps({
     countryInfo:{
         type: Array,
         default: null
     }
 });
+const isBackgroundActive = ref(false);
 
 const { countryInfo } = toRefs(props)
+const emits = defineEmits();
 
 console.log(props);
+const handleDistrictIfo = (event) => {
+    emits('sent-district', event)
+    isBackgroundActive.value = !isBackgroundActive.value;
+    console.log(event)
+}
 </script>
 <template>
     <section class="layout-sidebar deviation-list w-[100%] px-2 pt-[5px]">
@@ -33,7 +40,8 @@ console.log(props);
                 <div class="p-2 dark:border-gray-700 dark:bg-gray-900">
 
                     <ul v-for="district in division?.division_information" :key="district.dis_id" class="sub-menu font-side">
-                        <li>{{ district.district_name }}</li>
+                        <li @click="handleDistrictIfo(division.division_information)
+                        " :class="{ 'bg-blue-700': isBackgroundActive}">{{ district.district_name }}</li>
                     </ul>
                 </div>
             </div>
