@@ -5,12 +5,13 @@ import Home from './components/Home/Home.vue';
 import bangladesh from '/data/bangladesh.json';
 import { ref } from 'vue';
 
-const receivedData = ref('');
+const receivedData = ref(null);
 
 const receiveData = (data) => {
   receivedData.value = data;
-  console.log(data)
+  console.log("Result",data)
 };
+
 
 </script>
 

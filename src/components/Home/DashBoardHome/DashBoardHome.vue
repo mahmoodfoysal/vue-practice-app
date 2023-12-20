@@ -1,6 +1,5 @@
 <script setup>
 
-
 </script>
 <template>
     <section class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
