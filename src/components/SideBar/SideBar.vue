@@ -12,7 +12,7 @@ const emit = defineEmits();
 
 const handleDistrictIfo = (division, district) => {
 
-    emit('sent-district', district)
+    emit('sent-district', {division, district})
     isBackgroundActive.value = !isBackgroundActive.value;
     console.log('Division', division);
     // console.log('District', district);
