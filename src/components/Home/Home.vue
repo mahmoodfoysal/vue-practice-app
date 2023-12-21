@@ -10,14 +10,17 @@ const props = defineProps({
     
 });
 
-const { divisionDistrictInfo } = toRefs(props)
-// console.log(divisionDistrictInfo)
+const { divisionDistrictInfo } = toRefs(props);
 
 
 </script>
 
 <template>
-<DashBoardHome :district="divisionDistrictInfo"></DashBoardHome>
+    <!-- <p v-if="divisionDistrictInfo === null"></p> -->
+    <div>
+        <DashBoardHome :divisionDistrictInfo="divisionDistrictInfo" ></DashBoardHome>
+    </div>
+
 
 <!-- {{ divisionDistrictInfo }} -->
 </template>

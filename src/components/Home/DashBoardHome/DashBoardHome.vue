@@ -1,23 +1,27 @@
 <script setup>
 import { toRefs } from 'vue';
 const props = defineProps({
-    district: {
+    divisionDistrictInfo: {
         type: Array,
-        default: null,
-    }
+        default:null
+    },
 });
 
-const { district } = toRefs(props)
-console.log(district)
+const { divisionDistrictInfo } = toRefs(props)
 
 </script>
 <template>
-    <section class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
-        <div class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
+    <p v-if="divisionDistrictInfo === null"></p>
+    <section v-else class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
+        <div >
+            <div class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
             <!-- <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Dashboard</h4>  -->
-            <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">District Info</h4> 
-            <button class="text-white bg-[#7C3AED] rounded-md px-[15px] mx-5 text-xs">Go To Website</button>
+            <h4  class="text-2xl text-[#101833] mx-5 dashboard-text">Division: {{ divisionDistrictInfo[0].division_name }}</h4> 
+            <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">District: {{ divisionDistrictInfo[1].district_name }}</h4> 
+            <!-- <button class="text-white bg-[#7C3AED] rounded-md px-[15px] mx-5 text-xs">Go To Website</button> -->
         </div>
+        </div>
+
 
         <!-- table start -->
 
@@ -49,29 +53,29 @@ console.log(district)
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr v-for="disInfo in district?.division_information"
+                <tbody v-for="districtInfo in divisionDistrictInfo">
+                    <tr v-for="disInfo in districtInfo.info"
                         class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                         <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ disInfo.district_name }}
+                            {{ disInfo.person }}
                         </th>
                         <td class="px-6 py-2">
-                            1222
+                            {{ disInfo.age }}
                         </td>
                         <td class="px-6 py-2">
-                            Dummy data
+                            {{ disInfo.address }}
                         </td>
                         <td class="px-6 py-2">
-                            Dummy Data
+                            {{ disInfo.designation }}
                         </td>
                         <td class="px-6 py-2">
-                            Dummy Data
+                            dummy
                         </td>
                         <td class="px-6 py-2">
-                            Dummy Data
+                            dummy
                         </td>
                         <td class="px-6 py-2">
-                            Dummy Data
+                            dummy
                         </td>
 
                     </tr>
@@ -84,7 +88,6 @@ console.log(district)
 
         <!-- table end -->
 
-        {{ district }}
 
 
 
