@@ -1,4 +1,14 @@
 <script setup>
+import { toRefs } from 'vue';
+const props = defineProps({
+    district: {
+        type: Array,
+        default: null,
+    }
+});
+
+const { district } = toRefs(props)
+console.log(district)
 
 </script>
 <template>
@@ -40,10 +50,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr
+                    <tr v-for="disInfo in district?.division_information"
                         class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                         <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Dummy name
+                            {{ disInfo.district_name }}
                         </th>
                         <td class="px-6 py-2">
                             1222
@@ -65,131 +75,7 @@
                         </td>
 
                     </tr>
-                    <tr
-                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Dummy name
-                        </th>
-                        <td class="px-6 py-2">
-                            1222
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
 
-                    </tr>
-                    <tr
-                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Dummy name
-                        </th>
-                        <td class="px-6 py-2">
-                            1222
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-
-                    </tr>
-                    <tr
-                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Dummy name
-                        </th>
-                        <td class="px-6 py-2">
-                            1222
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-
-                    </tr>
-                    <tr
-                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Dummy name
-                        </th>
-                        <td class="px-6 py-2">
-                            1222
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-
-                    </tr>
-                    <tr
-                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Dummy name
-                        </th>
-                        <td class="px-6 py-2">
-                            1222
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-                        <td class="px-6 py-2">
-                            Dummy Data
-                        </td>
-
-                    </tr>
 
 
                 </tbody>
@@ -197,6 +83,8 @@
         </div>
 
         <!-- table end -->
+
+        {{ district }}
 
 
 

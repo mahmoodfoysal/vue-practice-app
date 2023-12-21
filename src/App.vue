@@ -8,8 +8,8 @@ import { ref } from 'vue';
 const receivedData = ref(null);
 
 const receiveData = (data) => {
-  // receivedData.value = data;
-  console.log("Result",data)
+  receivedData.value = data;
+  // console.log("Result", data)
 };
 
 
@@ -23,7 +23,7 @@ const receiveData = (data) => {
     <div class="lg:col-span-10 md:col-span-10 sm:col-span-12">
       <NavBar></NavBar>
       <!-- Main Section -->
-      <Home ></Home>
+      <Home :divisionDistrictInfo = "receivedData"></Home>
     </div>
   </div>
 </template>

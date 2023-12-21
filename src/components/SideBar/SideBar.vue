@@ -6,15 +6,15 @@ const props = defineProps({
         default: null
     }
 });
+
 const isBackgroundActive = ref(false);
 const { countryInfo } = toRefs(props)
 const emit = defineEmits();
-
 const handleDistrictIfo = (division, district) => {
 
-    emit('sent-district', {division, district})
+    emit('sent-district', [division, district])
     isBackgroundActive.value = !isBackgroundActive.value;
-    console.log('Division', division);
+    // console.log('Division', division);
     // console.log('District', district);
 }
 </script>
