@@ -1,5 +1,5 @@
 <script setup>
-import { toRefs } from 'vue';
+import { toRefs, ref } from 'vue';
 const props = defineProps({
     divisionDistrictInfo: {
         type: Array,
@@ -9,46 +9,105 @@ const props = defineProps({
 
 const { divisionDistrictInfo } = toRefs(props)
 
+const id = ref(null);
+const person = ref('');
+const age = ref(null);
+const address = ref('');
+const designation = ref('');
+const url = ref('');
+
+
+const submitForm = () => {
+    const submittedID = id.value;
+    const submittedPerson = person.value;
+    const submittedAge = age.value;
+    const submittedAddress = address.value;
+    const submittedDesignation = designation.value;
+    const submittedUrl = url.value;
+    const tdata = document.getElementById('tdata')
+    const div = document.createElement('div');
+    div.innerHTML = `
+    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+    <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                               ${submittedID}
+                            </th>
+                            <td class="px-6 py-2">
+                               ${submittedPerson}
+                            </td>
+                            <td class="px-6 py-2">
+                                ${submittedAge}
+                            </td>
+                            <td class="px-6 py-2">
+                                ${submittedAddress}
+                            </td>
+                            <td class="px-6 py-2">
+                                ${submittedDesignation}
+                            </td>
+                            <td class="px-6 py-2">
+                                ${submittedUrl}
+                            </td>
+                            <td class="px-6 py-2">
+                                dummy
+                            </td>
+                            </tr>
+    `
+    tdata.appendChild(div);
+    id.value='';
+    person.value='';
+    age.value='';
+    address.value='';
+    designation.value='';
+    url.value='';
+
+
+
+}
+
 </script>
 <template>
     <div>
         <section class="mb-2" v-if="divisionDistrictInfo !== null">
-            <form>
+            <form @submit.prevent="submitForm">
                 <div class="mx-2 grid gap-6 mb-6 md:grid-cols-2">
                     <div>
-                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID</label>
-                        <input type="Number" id="first_name"
+                        <label for="first_name"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID</label>
+                        <input v-model.number="id" type="Number" id="first_name id-field'"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Enter Person ID" required>
+                            placeholder="Enter Person ID">
                     </div>
                     <div>
-                        <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Person</label>
-                        <input type="text" id="last_name"
+                        <label for="last_name"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Person</label>
+                        <input v-model="person" type="text" id="last_name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Enter Person Full Name" required>
+                            placeholder="Enter Person Full Name">
                     </div>
                     <div>
                         <label for="company"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age</label>
-                        <input type="number" id="company"
+                        <input v-model.number="age" type="number" id="company"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Enter Person Age" required>
+                            placeholder="Enter Person Age">
                     </div>
                     <div>
-                        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                        <input type="text" id="phone"
+                        <label for="phone"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                            <input v-model="address" type="text" id="last_name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Enter Full Address" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
+                            placeholder="Enter Person Full Name">
                     </div>
                     <div>
-                        <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Designation</label>
-                        <input type="text" id="website"
+                        <label for="website"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Designation</label>
+                        <input v-model="designation" type="text" id="website"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Enter Person Designation" required>
+                            placeholder="Enter Person Designation">
                     </div>
                     <div>
-                        <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
-                        <input type="url" id="visitors"
+                        <label for="visitors"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
+                        <input v-model="url" type="url" id="visitors"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Enter Photo URL">
                     </div>
@@ -66,9 +125,6 @@ const { divisionDistrictInfo } = toRefs(props)
                         divisionDistrictInfo[0].division_name }}</h4>
                     <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">District: {{
                         divisionDistrictInfo[1].district_name }}</h4>
-                    <!-- <button
-            data-modal-target="static-modal" data-modal-toggle="static-modal" 
-            class="text-white bg-[#7C3AED] rounded-md px-[15px] mx-5 text-xs">Add New</button> -->
 
                 </div>
             </div>
@@ -77,7 +133,8 @@ const { divisionDistrictInfo } = toRefs(props)
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-[#F3F4F6] dark:bg-gray-700 dark:text-gray-400">
+                    <thead 
+                        class="text-xs text-gray-700 uppercase bg-[#F3F4F6] dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
                                 ID
@@ -102,7 +159,7 @@ const { divisionDistrictInfo } = toRefs(props)
                             </th>
                         </tr>
                     </thead>
-                    <tbody v-for="districtInfo in divisionDistrictInfo">
+                    <tbody id="tdata" v-for="districtInfo in divisionDistrictInfo">
                         <tr v-for="disInfo in districtInfo.info"
                             class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                             <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -127,6 +184,33 @@ const { divisionDistrictInfo } = toRefs(props)
                                 dummy
                             </td>
                         </tr>
+                        <tr
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                dummy
+                            </th>
+                            <td class="px-6 py-2">
+                                dummy
+                            </td>
+                            <td class="px-6 py-2">
+                                dummy
+                            </td>
+                            <td class="px-6 py-2">
+                                dummy
+                            </td>
+                            <td class="px-6 py-2">
+                                dummy
+                            </td>
+                            <td class="px-6 py-2">
+                                dummy
+                            </td>
+                            <td class="px-6 py-2">
+                                dummy
+                            </td>
+                        </tr>
+                        <div >
+
+                        </div>
                     </tbody>
                 </table>
             </div>
@@ -229,6 +313,7 @@ const { divisionDistrictInfo } = toRefs(props)
     background: white;
     color: gray;
     vertical-align: middle;
-}</style>
+}
+</style>
 
 
