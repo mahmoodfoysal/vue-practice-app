@@ -15,6 +15,8 @@ const age = ref(null);
 const address = ref('');
 const designation = ref('');
 const url = ref('');
+const formSubmitted = ref(false);
+const inputData = ref([]);
 
 
 const submitForm = () => {
@@ -24,42 +26,23 @@ const submitForm = () => {
     const submittedAddress = address.value;
     const submittedDesignation = designation.value;
     const submittedUrl = url.value;
-    const tdata = document.getElementById('tdata')
-    const div = document.createElement('div');
-    div.innerHTML = `
-    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-    <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                               ${submittedID}
-                            </th>
-                            <td class="px-6 py-2">
-                               ${submittedPerson}
-                            </td>
-                            <td class="px-6 py-2">
-                                ${submittedAge}
-                            </td>
-                            <td class="px-6 py-2">
-                                ${submittedAddress}
-                            </td>
-                            <td class="px-6 py-2">
-                                ${submittedDesignation}
-                            </td>
-                            <td class="px-6 py-2">
-                                ${submittedUrl}
-                            </td>
-                            <td class="px-6 py-2">
-                                dummy
-                            </td>
-                            </tr>
-    `
-    tdata.appendChild(div);
+
+    inputData.value.push({
+    personID: submittedID,
+    personName: submittedPerson,
+    personAge: submittedAge,
+    personAddress: submittedAddress,
+    personDesignation: submittedDesignation,
+    personImage: submittedUrl,
+  });
+
+    formSubmitted.value = true;
     id.value='';
     person.value='';
     age.value='';
     address.value='';
     designation.value='';
     url.value='';
-
-
 
 }
 
@@ -107,7 +90,7 @@ const submitForm = () => {
                     <div>
                         <label for="visitors"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
-                        <input v-model="url" type="url" id="visitors"
+                        <input v-model="url" type="text" id="visitors"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Enter Photo URL">
                     </div>
@@ -159,7 +142,7 @@ const submitForm = () => {
                             </th>
                         </tr>
                     </thead>
-                    <tbody id="tdata" v-for="districtInfo in divisionDistrictInfo">
+                    <tbody v-for="districtInfo in divisionDistrictInfo">
                         <tr v-for="disInfo in districtInfo.info"
                             class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                             <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -184,33 +167,32 @@ const submitForm = () => {
                                 dummy
                             </td>
                         </tr>
-                        <tr
+                        <tr v-if="formSubmitted" v-for="(givenInput, index) in inputData" :key="index"
                             class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                             <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                dummy
+                                {{ givenInput.personID }}
                             </th>
                             <td class="px-6 py-2">
-                                dummy
+                                {{givenInput.personName}}
                             </td>
                             <td class="px-6 py-2">
-                                dummy
+                                {{givenInput.personAge}}
+                            </td>
+ 
+                            <td class="px-6 py-2">
+                                {{givenInput.personAddress}}
                             </td>
                             <td class="px-6 py-2">
-                                dummy
+                                {{ givenInput.personDesignation }}
                             </td>
                             <td class="px-6 py-2">
-                                dummy
+                                {{ givenInput.personImage }}
                             </td>
                             <td class="px-6 py-2">
-                                dummy
-                            </td>
-                            <td class="px-6 py-2">
-                                dummy
+                                Dummy
                             </td>
                         </tr>
-                        <div >
 
-                        </div>
                     </tbody>
                 </table>
             </div>
