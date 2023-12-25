@@ -7,15 +7,16 @@ const props = defineProps({
     }
 });
 
+
+const activeIndex = ref(null);
 const isBackgroundActive = ref(false);
 const { countryInfo } = toRefs(props)
 const emit = defineEmits();
-const handleDistrictIfo = (division, district) => {
-
+const handleDistrictIfo = (division, district, index) => {
     emit('sent-information', [division, district])
     // isBackgroundActive.value = !isBackgroundActive.value;
-    // console.log('Division', division);
-    // console.log('District', district);
+    activeIndex.value = index;
+    console.log(index)
 }
 </script>
 <template>
@@ -40,10 +41,10 @@ const handleDistrictIfo = (division, district) => {
                     :aria-labelledby="`accordion-collapse-heading-${division.div_id}`">
                     <div class="p-2 dark:border-gray-700 dark:bg-gray-900">
 
-                        <ul v-for="district in division?.division_information" :key="district.dis_id"
+                        <ul v-for="(district, index) in division?.division_information" :key="index"
                             class="sub-menu font-side">
-                            <li @click="handleDistrictIfo(division, district)"
-                                :class="{ 'bg-blue-700': isBackgroundActive }">
+                            <li @click="handleDistrictIfo(division, district, index)"
+                                :class="{'bg-blue-700': index === activeIndex }">
                                 {{ district.district_name }}
                             </li>
                         </ul>
@@ -78,4 +79,11 @@ const handleDistrictIfo = (division, district) => {
 .font-side {
     font-family: 'Heebo', sans-serif;
     font-size: 14px;
-}</style>
+}
+
+li.selected {
+  background-color: #3498db; /* Change this to the desired background color */
+  color: #fff;
+}
+
+</style>
