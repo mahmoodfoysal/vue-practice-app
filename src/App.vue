@@ -5,25 +5,38 @@ import Home from './components/Home/Home.vue';
 import bangladesh from '/data/bangladesh.json';
 import { ref } from 'vue';
 
-const receivedData = ref(null);
+const receivedDivision = ref(null);
+const receivedDistrict = ref(null);
 
-const receiveData = (data) => {
-  receivedData.value = data;
-  console.log("Result", data)
+const receiveDivisionDistrict = (divison, district) => {
+  receivedDivision.value = divison;
+  receivedDistrict.value = district;
+  // console.log("Division", divison, district)
 };
 
+// const receiveDistrict = (district) => {
+//   receivedDistrict.value = district;
+//   console.log("District", district)
+// }
 
 </script>
 
 <template>
   <div class="grid lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12 ">
     <div class="lg:col-span-2 md:col-span-2 invisible md:visible lg:visible lg:relative md:relative mobile-view absolute">
-      <SideBar :countryInfo="bangladesh" @sent-information="receiveData"></SideBar>
+      <SideBar 
+      :countryInfo="bangladesh"
+      @sent-division-district="receiveDivisionDistrict"
+      
+      ></SideBar>
     </div>
     <div class="lg:col-span-10 md:col-span-10 sm:col-span-12">
       <NavBar></NavBar>
       <!-- Main Section -->
-      <Home :divisionDistrictInfo = "receivedData"></Home>
+      <Home 
+      :divisionInfo = "receivedDivision"
+      :districtInfo="receivedDistrict"
+      ></Home>
     </div>
   </div>
 </template>

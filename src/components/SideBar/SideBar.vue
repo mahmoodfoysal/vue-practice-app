@@ -7,17 +7,15 @@ const props = defineProps({
     }
 });
 
-
 const activeIndex = ref(null);
-const isBackgroundActive = ref(false);
 const { countryInfo } = toRefs(props)
 const emit = defineEmits();
 const handleDistrictIfo = (division, district, index) => {
-    emit('sent-information', [division, district])
-    // isBackgroundActive.value = !isBackgroundActive.value;
+    emit('sent-division-district', division, district);
+    // emit('sent-district', district);
     activeIndex.value = index;
-    console.log(index)
 }
+ 
 </script>
 <template>
     <section class="layout-sidebar deviation-list w-[100%] px-2 pt-[5px]">
@@ -55,8 +53,6 @@ const handleDistrictIfo = (division, district, index) => {
         </div>
     </section>
 </template>
-
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');

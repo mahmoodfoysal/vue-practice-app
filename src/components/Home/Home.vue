@@ -3,14 +3,19 @@ import DashBoardHome from './DashBoardHome/DashBoardHome.vue';
 import { toRefs } from 'vue';
 
 const props = defineProps({
-    divisionDistrictInfo: {
-        type: Array,
+    divisionInfo: {
+        type: Object,
+        default: null,
+    },
+    districtInfo: {
+        type: Object,
         default: null,
     }
-    
 });
 
-const { divisionDistrictInfo } = toRefs(props);
+
+const { divisionInfo } = toRefs(props);
+const { districtInfo } = toRefs(props);
 
 
 </script>
@@ -18,7 +23,10 @@ const { divisionDistrictInfo } = toRefs(props);
 <template>
     <!-- <p v-if="divisionDistrictInfo === null"></p> -->
     <div>
-        <DashBoardHome :divisionDistrictInfo="divisionDistrictInfo" ></DashBoardHome>
+        <DashBoardHome
+        :divisionInfo="divisionInfo" 
+        :districtInfo="districtInfo"
+        ></DashBoardHome>
     </div>
 
 

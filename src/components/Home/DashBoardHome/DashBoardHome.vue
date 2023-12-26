@@ -1,13 +1,21 @@
 <script setup>
 import { toRefs, ref } from 'vue';
 const props = defineProps({
-    divisionDistrictInfo: {
-        type: Array,
+    divisionInfo: {
+        type: Object,
         default: null
     },
+    districtInfo: {
+        type: Object,
+        default: null
+    }
 });
 
-const { divisionDistrictInfo } = toRefs(props)
+const { divisionInfo } = toRefs(props);
+const { districtInfo } = toRefs(props);
+
+// console.log("Info Division:", divisionInfo)
+// console.log("Info District:", districtInfo)
 
 const id = ref(null);
 const person = ref('');
@@ -49,7 +57,7 @@ const submitForm = () => {
 </script>
 <template>
     <div>
-        <section class="mb-2" v-if="divisionDistrictInfo !== null">
+        <section>
             <form @submit.prevent="submitForm">
                 <div class="mx-2 grid gap-6 mb-6 md:grid-cols-2">
                     <div>
@@ -99,15 +107,13 @@ const submitForm = () => {
                     class="mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </form>
         </section>
-        <h1 class="text-3xl text-center" v-if="divisionDistrictInfo === null">Please select Your District</h1>
-        <section v-else class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
+        <!-- <h1 class="text-3xl text-center">Please select Your District</h1> -->
+        <section class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
             <div>
                 <div class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
                     <!-- <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Dashboard</h4>  -->
-                    <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Division: {{
-                        divisionDistrictInfo[0].division_name }}</h4>
-                    <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">District: {{
-                        divisionDistrictInfo[1].district_name }}</h4>
+                    <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Division: {{ divisionInfo?.division_name }}</h4>
+                    <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">District: {{ districtInfo?.district_name }}</h4>
 
                 </div>
             </div>
@@ -142,9 +148,9 @@ const submitForm = () => {
                             </th>
                         </tr>
                     </thead>
-                    <tbody v-for="districtInfo in divisionDistrictInfo">
-                        <tr v-for="disInfo in districtInfo.info"
-                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                    <tbody>
+                        <tr v-for="disInfo in districtInfo?.info"
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700" :key="disInfo.id">
                             <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ disInfo.id }}
                             </th>
@@ -167,6 +173,7 @@ const submitForm = () => {
                                 dummy
                             </td>
                         </tr>
+
                         <tr v-if="formSubmitted" v-for="(givenInput, index) in inputData" :key="index"
                             class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                             <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
