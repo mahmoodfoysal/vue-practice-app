@@ -13,6 +13,7 @@
                         "age": 26,
                         "address": "63, new bilsimla, rajshahi",
                         "designation": "Student",
+                        "district": "Rajshahi",
                         "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
                     },
                     {
@@ -21,6 +22,7 @@
                         "age": 26,
                         "address": "64, new bilsimla, rajshahi",
                         "designation": "Student",
+                        "district": "Rajshahi",
                         "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
                     }
                 ]
@@ -35,6 +37,7 @@
                         "age": 28,
                         "address": "Nator",
                         "designation": "Engineer",
+                        "district": "Nator",
                         "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
                     },
                     {
@@ -43,6 +46,7 @@
                         "age": 35,
                         "address": "Tomal-tola, Nator",
                         "designation": "Doctor",
+                        "district": "Nator",
                         "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
                     }
                 ]
@@ -63,6 +67,7 @@
                         "age": 32,
                         "address": "Dhaka",
                         "designation": "Businessman",
+                        "district": "Dhaka",
                         "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
                     },
                     {
@@ -71,6 +76,7 @@
                         "age": 26,
                         "address": "Dhaka",
                         "designation": "Engineer",
+                        "district": "Dhaka",
                         "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
                     }
                 ]
@@ -85,6 +91,7 @@
                         "age": 28,
                         "address": "Savar",
                         "designation": "Engineer",
+                        "district": "Savar",
                         "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
                     },
                     {
@@ -93,6 +100,7 @@
                         "age": 35,
                         "address": "Savar",
                         "designation": "Doctor",
+                        "district": "Savar",
                         "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
                     }
                 ]
@@ -113,6 +121,7 @@
                         "age": 32,
                         "address": "Sylet",
                         "designation": "Businessman",
+                        "district": "Sylet",
                         "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
                     },
                     {
@@ -121,6 +130,7 @@
                         "age": 26,
                         "address": "Sylet",
                         "designation": "Engineer",
+                        "district": "Sylet",
                         "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
                     }
                 ]
@@ -135,6 +145,7 @@
                         "age": 28,
                         "address": "Sunamgong",
                         "designation": "Engineer",
+                        "district": "Sunamgong",
                         "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
                     },
                     {
@@ -143,6 +154,7 @@
                         "age": 35,
                         "address": "Sunamgong",
                         "designation": "Doctor",
+                        "district": "Sunamgong",
                         "image": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
                     }
                 ]
