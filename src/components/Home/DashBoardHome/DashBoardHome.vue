@@ -1,5 +1,6 @@
 <script setup>
 import { toRefs, ref } from 'vue';
+
 const props = defineProps({
     divisionInfo: {
         type: Object,
@@ -37,41 +38,79 @@ const submitForm = () => {
     const submittedDistrict = district.value;
 
     inputData.value.push({
-    personID: submittedID,
-    personName: submittedPerson,
-    personAge: submittedAge,
-    personAddress: submittedAddress,
-    personDesignation: submittedDesignation,
-    personImage: submittedUrl,
-    personDistrict: submittedDistrict,
-  });
-  if (districtInfo.value) {
-    districtInfo.value.info.push({
-      id: submittedID,
-      person: submittedPerson,
-      age: submittedAge,
-      address: submittedAddress,
-      designation: submittedDesignation,
-      image: submittedUrl,
-      district: submittedDistrict,
+        personID: submittedID,
+        personName: submittedPerson,
+        personAge: submittedAge,
+        personAddress: submittedAddress,
+        personDesignation: submittedDesignation,
+        personImage: submittedUrl,
+        personDistrict: submittedDistrict,
     });
-  }
+    if (districtInfo.value) {
+        districtInfo.value.info.push({
+            id: submittedID,
+            person: submittedPerson,
+            age: submittedAge,
+            address: submittedAddress,
+            designation: submittedDesignation,
+            image: submittedUrl,
+            district: submittedDistrict,
+        });
+    }
 
     formSubmitted.value = true;
-    id.value='';
-    person.value='';
-    age.value='';
-    address.value='';
-    designation.value='';
-    url.value='';
-    district.value='';
+    id.value = '';
+    person.value = '';
+    age.value = '';
+    address.value = '';
+    designation.value = '';
+    url.value = '';
+    district.value = '';
+
 }
+
+const isVisible = ref(false);
+const isVisible2 = ref(false);
+
+const toggleVisibility = () => {
+  isVisible.value = !isVisible.value;
+};
+const toggleVisibility2 = () => {
+  isVisible2.value = !isVisible2.value;
+};
+
+
+
 
 </script>
 <template>
-    <div>
+
+    <div v-if="districtInfo && divisionInfo !== null">
+        <section class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
+            <!-- button group -->
+            <button 
+            @click="toggleVisibility"
+            type="button"
+                class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
+                Employee</button>
+            <button
+            @click="toggleVisibility2" type="button"
+                class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
+                Division</button>
+            <button type="button"
+                class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
+                District</button>
+        </section>
         <section class="mb-2">
-            <form @submit.prevent="submitForm">
+            <form v-show="isVisible2" action=""><p></p>
+            <p>hjkdjah</p>
+            <p>bjnm,</p>
+            <p>hgjkl</p>
+            <p>bn</p>
+            <p>jhkm</p></form>
+            <form
+            v-show="isVisible"
+            @submit.prevent="submitForm">
                 <div class="mx-4 grid gap-2 mb-4 md:grid-cols-2">
                     <div>
                         <label for="first_name"
@@ -97,7 +136,7 @@ const submitForm = () => {
                     <div>
                         <label for="phone"
                             class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                            <input v-model="address" type="text" id="last_name"
+                        <input v-model="address" type="text" id="last_name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Enter Person Full Name" required>
                     </div>
@@ -129,21 +168,17 @@ const submitForm = () => {
         </section>
         <!-- <h1 class="text-3xl text-center">Please select Your District</h1> -->
         <section class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
-            <div>
-                <div class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
-                    <!-- <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Dashboard</h4>  -->
-                    <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Division: {{ divisionInfo?.division_name }}</h4>
-                    <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">District: {{ districtInfo?.district_name }}</h4>
-
-                </div>
+            <div class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
+                <!-- <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Dashboard</h4>  -->
+                <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Division: {{ divisionInfo?.division_name }}</h4>
+                <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">District: {{ districtInfo?.district_name }}</h4>
             </div>
 
             <!-- table start -->
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead 
-                        class="text-xs text-gray-700 uppercase bg-[#F3F4F6] dark:bg-gray-700 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-[#F3F4F6] dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
                                 ID
