@@ -8,35 +8,43 @@ import { ref } from 'vue';
 const receivedDivision = ref(null);
 const receivedDistrict = ref(null);
 
+// ------------------------------------------division ref start-----------------------------------------
+const div_id = ref(null);
+const div_name = ref('');
+// -----------------------------------------division ref end-------------------------------------------
+
 const receiveDivisionDistrict = (divison, district) => {
   receivedDivision.value = divison;
   receivedDistrict.value = district;
   // console.log("Division", divison, district)
 };
 
-// const receiveDistrict = (district) => {
-//   receivedDistrict.value = district;
-//   console.log("District", district)
-// }
+const emit = defineEmits();
+
+const handleAddDivision = () => {
+  console.log("App Component Click");
+  bangladesh.value.push([{
+    div_id: div_id.value,
+    division_name: div_name.value,
+  }]);
+
+  div_id.value = '';
+  div_name.value = '';
+  // emit('add-division')
+}
 
 </script>
 
 <template>
   <div class="grid lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12 ">
     <div class="lg:col-span-2 md:col-span-2 invisible md:visible lg:visible lg:relative md:relative mobile-view absolute">
-      <SideBar 
-      :countryInfo="bangladesh"
-      @sent-division-district="receiveDivisionDistrict"
-      
-      ></SideBar>
+      <SideBar :countryInfo="bangladesh" @sent-division-district="receiveDivisionDistrict"
+        @add-division='handleAddDivision'></SideBar>
     </div>
     <div class="lg:col-span-10 md:col-span-10 sm:col-span-12">
       <NavBar></NavBar>
       <!-- Main Section -->
-      <Home 
-      :divisionInfo = "receivedDivision"
-      :districtInfo="receivedDistrict"
-      ></Home>
+      <Home :divisionInfo="receivedDivision" :districtInfo="receivedDistrict" @add-division="handleAddDivision"></Home>
     </div>
   </div>
 </template>

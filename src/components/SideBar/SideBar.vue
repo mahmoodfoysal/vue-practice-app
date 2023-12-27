@@ -4,18 +4,34 @@ const props = defineProps({
     countryInfo: {
         type: Array,
         default: null
+    },
+    handleAddDivision: {
+        type: Function,
+        default: () => { }
     }
 });
 
 const activeIndex = ref(null);
-const { countryInfo } = toRefs(props)
+const { countryInfo } = toRefs(props);
 const emit = defineEmits();
+
+const handleAddDivision = () => {
+    // divisionInfo.value.push({
+    //     div_id: div_id.value,
+    //     division_name: div_name.value,
+    // });
+
+    // div_id.value = '';
+    // div_name.value = '';
+    console.log("Side bar Clicks")
+    emit('handelDivision')
+}
+
 const handleDistrictIfo = (division, district, index) => {
     emit('sent-division-district', division, district);
-    // emit('sent-district', district);
     activeIndex.value = index;
 }
- 
+
 </script>
 <template>
     <section class="layout-sidebar deviation-list w-[100%] px-2 pt-[5px]">
@@ -42,7 +58,7 @@ const handleDistrictIfo = (division, district, index) => {
                         <ul v-for="(district, index) in division?.division_information" :key="index"
                             class="sub-menu font-side">
                             <li @click="handleDistrictIfo(division, district, index)"
-                                :class="{'bg-blue-700': index === activeIndex }">
+                                :class="{ 'bg-blue-700': index === activeIndex }">
                                 {{ district.district_name }}
                             </li>
                         </ul>
@@ -78,8 +94,8 @@ const handleDistrictIfo = (division, district, index) => {
 }
 
 li.selected {
-  background-color: #3498db; /* Change this to the desired background color */
-  color: #fff;
+    background-color: #3498db;
+    /* Change this to the desired background color */
+    color: #fff;
 }
-
 </style>

@@ -17,6 +17,12 @@ const props = defineProps({
 const { divisionInfo } = toRefs(props);
 const { districtInfo } = toRefs(props);
 
+const emit = defineEmits();
+
+const handleDivisionClick = () => {
+    // console.log("Home Component click");
+    emit('add-division');
+}
 
 </script>
 
@@ -26,6 +32,7 @@ const { districtInfo } = toRefs(props);
         <DashBoardHome
         :divisionInfo="divisionInfo" 
         :districtInfo="districtInfo"
+        @add-division="handleDivisionClick"
         ></DashBoardHome>
     </div>
 

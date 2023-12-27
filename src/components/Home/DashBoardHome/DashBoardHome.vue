@@ -14,36 +14,45 @@ const props = defineProps({
 
 const { divisionInfo } = toRefs(props);
 const { districtInfo } = toRefs(props);
+const emit = defineEmits();
 
+// ----------------------------------------all ref declare here ------------------------------------------
+
+// ---------------------------------------information ref start ---------------------------------------
 const id = ref(null);
 const person = ref('');
 const age = ref(null);
 const address = ref('');
 const designation = ref('');
 const url = ref('');
-const district = ref('')
-const formSubmitted = ref(false);
+const district = ref('');
+// -----------------------------------------information ref end----------------------------------------
 
-const handleSubmitInfo = () => {
-    const submittedID = id.value;
-    const submittedPerson = person.value;
-    const submittedAge = age.value;
-    const submittedAddress = address.value;
-    const submittedDesignation = designation.value;
-    const submittedUrl = url.value;
-    const submittedDistrict = district.value;
+// ------------------------------------------division ref start-----------------------------------------
+const div_id = ref(null);
+const div_name = ref('');
+// -----------------------------------------division ref end-------------------------------------------
 
-        districtInfo.value.info.push({
-            id: submittedID,
-            person: submittedPerson,
-            age: submittedAge,
-            address: submittedAddress,
-            designation: submittedDesignation,
-            image: submittedUrl,
-            district: submittedDistrict,
-        });
+//---------------------------------- change form by button click start----------------------------------
+const selectedForm = ref(0);
+const visulizeForm = (formNo) => {
+    selectedForm.value = formNo;
+}
+//---------------------------------- change form by button click end-------------------------------------
 
-    formSubmitted.value = true;
+// -----------------------------------all event handler declare here-------------------------------------- 
+// ---------------------------------employee information handler start ------------------------------------
+const handleAddEmployeeInfo = () => {
+    districtInfo.value.info.push({
+        id: id.value,
+        person: person.value,
+        age: age.value,
+        address: address.value,
+        designation: designation.value,
+        image: url.value,
+        district: district.value,
+    });
+
     id.value = '';
     person.value = '';
     age.value = '';
@@ -52,32 +61,43 @@ const handleSubmitInfo = () => {
     url.value = '';
     district.value = '';
 }
+//------------------------------------ employee information handler end-----------------------------------------
 
-const selectedForm = ref(0);
-const visulizeForm = (formNo) => {
-    selectedForm.value = formNo;
-    console.log(selectedForm.value)
+// ------------------------------------------division handler start---------------------------------------------
+const handleAddDivision = () => {
+    // divisionInfo.value.push({
+    //     div_id: div_id.value,
+    //     division_name: div_name.value,
+    // });
+
+    // div_id.value = '';
+    // div_name.value = '';
+    emit('add-division');
+    console.log("Dashboard Component")
 }
+// -------------------------------------------division handler end-----------------------------------------------
 
 </script>
 <template>
     <div>
         <section class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
             <!-- button group -->
-            <button v-if="districtInfo && divisionInfo !== null" @click="visulizeForm(1)" type="button"
+            <button v-if="districtInfo && divisionInfo !== null" 
+            @click="visulizeForm(1)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 Employee</button>
             <button @click="visulizeForm(2)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 Division</button>
-            <button v-if="districtInfo && divisionInfo !== null" @click="visulizeForm(3)" type="button"
+            <button v-if="districtInfo && divisionInfo !== null" 
+            @click="visulizeForm(3)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 District</button>
         </section>
 
         <!----------------------------------- all form code written here Start------------------------------------------->
         <section class="mb-2">
-            <form v-if="selectedForm === 1" @submit.prevent="handleSubmitInfo">
+            <form v-if="selectedForm === 1" @submit.prevent="handleAddEmployeeInfo">
                 <div class="mx-4 grid gap-2 mb-4 md:grid-cols-2">
                     <div>
                         <label for="first_name"
@@ -134,7 +154,7 @@ const visulizeForm = (formNo) => {
             </form>
 
             <!-- ----------------------------------- Division Form Start----------------------------------------------  -->
-            <form v-if="selectedForm === 2">
+            <form v-if="selectedForm === 2" @submit.prevent="handleAddDivision">
                 <div class="mx-4 grid gap-2 mb-4 md:grid-cols-2">
                     <div>
                         <label for="first_name"
@@ -144,8 +164,8 @@ const visulizeForm = (formNo) => {
                             placeholder="Enter Division ID" required>
                     </div>
                     <div>
-                        <label for="last_name"
-                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Division Name</label>
+                        <label for="last_name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Division
+                            Name</label>
                         <input type="text" id="last_name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Enter Division Name" required>
@@ -168,8 +188,8 @@ const visulizeForm = (formNo) => {
                             placeholder="Enter District ID" required>
                     </div>
                     <div>
-                        <label for="last_name"
-                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">District Name</label>
+                        <label for="last_name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">District
+                            Name</label>
                         <input type="text" id="last_name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Enter District Name" required>
