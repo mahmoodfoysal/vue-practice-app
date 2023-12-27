@@ -15,9 +15,6 @@ const props = defineProps({
 const { divisionInfo } = toRefs(props);
 const { districtInfo } = toRefs(props);
 
-// console.log("Info Division:", divisionInfo)
-// console.log("Info District:", districtInfo)
-
 const id = ref(null);
 const person = ref('');
 const age = ref(null);
@@ -26,9 +23,8 @@ const designation = ref('');
 const url = ref('');
 const district = ref('')
 const formSubmitted = ref(false);
-const inputData = ref([]);
 
-const submitForm = () => {
+const handleSubmitInfo = () => {
     const submittedID = id.value;
     const submittedPerson = person.value;
     const submittedAge = age.value;
@@ -37,16 +33,6 @@ const submitForm = () => {
     const submittedUrl = url.value;
     const submittedDistrict = district.value;
 
-    inputData.value.push({
-        personID: submittedID,
-        personName: submittedPerson,
-        personAge: submittedAge,
-        personAddress: submittedAddress,
-        personDesignation: submittedDesignation,
-        personImage: submittedUrl,
-        personDistrict: submittedDistrict,
-    });
-    if (districtInfo.value) {
         districtInfo.value.info.push({
             id: submittedID,
             person: submittedPerson,
@@ -56,7 +42,6 @@ const submitForm = () => {
             image: submittedUrl,
             district: submittedDistrict,
         });
-    }
 
     formSubmitted.value = true;
     id.value = '';
@@ -66,10 +51,7 @@ const submitForm = () => {
     designation.value = '';
     url.value = '';
     district.value = '';
-
 }
-
-
 
 const selectedForm = ref(0);
 const visulizeForm = (formNo) => {
@@ -77,28 +59,25 @@ const visulizeForm = (formNo) => {
     console.log(selectedForm.value)
 }
 
-
-
-
 </script>
 <template>
-    <div v-if="districtInfo && divisionInfo !== null">
+    <div>
         <section class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
             <!-- button group -->
-            <button @click="visulizeForm(1)" type="button"
+            <button v-if="districtInfo && divisionInfo !== null" @click="visulizeForm(1)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 Employee</button>
             <button @click="visulizeForm(2)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 Division</button>
-            <button @click="visulizeForm(3)" type="button"
+            <button v-if="districtInfo && divisionInfo !== null" @click="visulizeForm(3)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 District</button>
         </section>
 
         <!----------------------------------- all form code written here Start------------------------------------------->
         <section class="mb-2">
-            <form v-if="selectedForm === 1" @submit.prevent="submitForm">
+            <form v-if="selectedForm === 1" @submit.prevent="handleSubmitInfo">
                 <div class="mx-4 grid gap-2 mb-4 md:grid-cols-2">
                     <div>
                         <label for="first_name"
@@ -268,30 +247,6 @@ const visulizeForm = (formNo) => {
                             </td>
                         </tr>
 
-                        <!-- <tr v-if="formSubmitted" v-for="(givenInput, index) in inputData" :key="index"
-                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                            <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ givenInput.personID }}
-                            </th>
-                            <td class="px-6 py-2">
-                                {{givenInput.personName}}
-                            </td>
-                            <td class="px-6 py-2">
-                                {{givenInput.personAge}}
-                            </td>
-                            <td class="px-6 py-2">
-                                {{givenInput.personAddress}}
-                            </td>
-                            <td class="px-6 py-2">
-                                {{ givenInput.personDesignation }}
-                            </td>
-                            <td class="px-6 py-2">
-                                {{ givenInput.personImage }}
-                            </td>
-                            <td class="px-6 py-2">
-                                {{givenInput.personDistrict}}
-                            </td> 
-                        </tr> -->
                     </tbody>
                 </table>
             </div>
