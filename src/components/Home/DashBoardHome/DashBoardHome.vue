@@ -69,48 +69,36 @@ const submitForm = () => {
 
 }
 
-const isVisible = ref(false);
-const isVisible2 = ref(false);
 
-const toggleVisibility = () => {
-  isVisible.value = !isVisible.value;
-};
-const toggleVisibility2 = () => {
-  isVisible2.value = !isVisible2.value;
-};
+
+const selectedForm = ref(0);
+const visulizeForm = (formNo) => {
+    selectedForm.value = formNo;
+    console.log(selectedForm.value)
+}
 
 
 
 
 </script>
 <template>
-
     <div v-if="districtInfo && divisionInfo !== null">
         <section class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
             <!-- button group -->
-            <button 
-            @click="toggleVisibility"
-            type="button"
+            <button @click="visulizeForm(1)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 Employee</button>
-            <button
-            @click="toggleVisibility2" type="button"
+            <button @click="visulizeForm(2)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 Division</button>
-            <button type="button"
+            <button @click="visulizeForm(3)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 District</button>
         </section>
+
+        <!----------------------------------- all form code written here Start------------------------------------------->
         <section class="mb-2">
-            <form v-show="isVisible2" action=""><p></p>
-            <p>hjkdjah</p>
-            <p>bjnm,</p>
-            <p>hgjkl</p>
-            <p>bn</p>
-            <p>jhkm</p></form>
-            <form
-            v-show="isVisible"
-            @submit.prevent="submitForm">
+            <form v-if="selectedForm === 1" @submit.prevent="submitForm">
                 <div class="mx-4 grid gap-2 mb-4 md:grid-cols-2">
                     <div>
                         <label for="first_name"
@@ -165,7 +153,58 @@ const toggleVisibility2 = () => {
                 <button type="submit"
                     class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </form>
+
+            <!-- ----------------------------------- Division Form Start----------------------------------------------  -->
+            <form v-if="selectedForm === 2">
+                <div class="mx-4 grid gap-2 mb-4 md:grid-cols-2">
+                    <div>
+                        <label for="first_name"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">ID</label>
+                        <input type="Number" id="first_name id-field'"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Enter Division ID" required>
+                    </div>
+                    <div>
+                        <label for="last_name"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Division Name</label>
+                        <input type="text" id="last_name"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Enter Division Name" required>
+                    </div>
+                </div>
+                <button type="submit"
+                    class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            </form>
+            <!-- ----------------------------------- Division Form End----------------------------------------------  -->
+
+
+            <!-- ----------------------------------- District Form Start--------------------------------------------  -->
+            <form v-if="selectedForm === 3">
+                <div class="mx-4 grid gap-2 mb-4 md:grid-cols-2">
+                    <div>
+                        <label for="first_name"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">ID</label>
+                        <input type="Number" id="first_name id-field'"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Enter District ID" required>
+                    </div>
+                    <div>
+                        <label for="last_name"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">District Name</label>
+                        <input type="text" id="last_name"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Enter District Name" required>
+                    </div>
+                </div>
+                <button type="submit"
+                    class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            </form>
+            <!-- ----------------------------------- Division Form End----------------------------------------------  -->
+
+
         </section>
+        <!----------------------------------- all form code written here end ------------------------------------------------->
+
         <!-- <h1 class="text-3xl text-center">Please select Your District</h1> -->
         <section class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
             <div class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
