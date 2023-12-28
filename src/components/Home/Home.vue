@@ -37,8 +37,8 @@ const handleDivisionClick = (newDivision) => {
     emit('add-division', newDivision);
 }
 
-const handleDistrictClick = (newDistrict) => {
-    emit('add-district', newDistrict);
+const handleDistrictClick = (newDistrict, match_division) => {
+    emit('add-district', newDistrict, match_division);
 }
 </script>
 

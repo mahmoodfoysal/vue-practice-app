@@ -24,8 +24,13 @@ const emit = defineEmits();
 // ***************************
 
 countryInfo.value = bangladesh;
-districtAddInfo.value = bangladesh[0].division_information;
-// console.log(bangladesh[0].division_information)
+// districtAddInfo.value = bangladesh[0].division_information;
+districtAddInfo.value = bangladesh;
+console.log(districtAddInfo.value);
+
+
+
+// console.log(bangladesh[0].division_name.toLowerCase());
 
 // ***************************
 // event handler declare here
@@ -40,8 +45,10 @@ const handleAddDivision = (newDivision) => {
   countryInfo.value.push(newDivision);
 }
 
-const handleAddDistrict = (newDistrict) => {
+const handleAddDistrict = (newDistrict, match_division) => {
+  // if(districtAddInfo.division_name)
   districtAddInfo.value.push(newDistrict);
+  // console.log(match_division);
 }
 
 </script>
@@ -49,7 +56,8 @@ const handleAddDistrict = (newDistrict) => {
 <template>
   <div class="grid lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12 ">
     <div class="lg:col-span-2 md:col-span-2 invisible md:visible lg:visible lg:relative md:relative mobile-view absolute">
-      <SideBar 
+      <SideBar
+      :handleAddDistrict = "handleAddDistrict" 
       :countryInfo="countryInfo" 
       @sent-division-district="receiveDivisionDistrict"
       ></SideBar>
