@@ -5,13 +5,27 @@ import Home from './components/Home/Home.vue';
 import bangladesh from '/data/bangladesh.json';
 import { ref } from 'vue';
 
+// -------------------------------------all ref declare start ------------------------------------------------
+
 const receivedDivision = ref(null);
 const receivedDistrict = ref(null);
+const countryInfo = ref(null);
 
-// ------------------------------------------division ref start-----------------------------------------
-const div_id = ref(null);
-const div_name = ref('');
-// -----------------------------------------division ref end-------------------------------------------
+// -------------------------------------all ref declare end ------------------------------------------------
+
+// ------------------------------------- emit declare start ------------------------------------------------
+
+const emit = defineEmits();
+
+// ------------------------------------- emit declare end ------------------------------------------------
+
+// -----------------------------------reactivate json file start ------------------------------------------------
+
+countryInfo.value = bangladesh;
+
+// -----------------------------------reactivate json file start ------------------------------------------------
+
+// ---------------------------------all event handler declare here start ------------------------------------------- 
 
 const receiveDivisionDistrict = (divison, district) => {
   receivedDivision.value = divison;
@@ -19,26 +33,22 @@ const receiveDivisionDistrict = (divison, district) => {
   // console.log("Division", divison, district)
 };
 
-const emit = defineEmits();
+const handleAddDivision = (newDivision) => {
+  countryInfo.value = bangladesh;
+  console.log("App Component Click", newDivision);
 
-const handleAddDivision = () => {
-  console.log("App Component Click");
-  bangladesh.value.push([{
-    div_id: div_id.value,
-    division_name: div_name.value,
-  }]);
+  countryInfo.value.push(newDivision);
 
-  div_id.value = '';
-  div_name.value = '';
-  // emit('add-division')
 }
+
+// ---------------------------------all event handler declare here end ------------------------------------------- 
 
 </script>
 
 <template>
   <div class="grid lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12 ">
     <div class="lg:col-span-2 md:col-span-2 invisible md:visible lg:visible lg:relative md:relative mobile-view absolute">
-      <SideBar :countryInfo="bangladesh" @sent-division-district="receiveDivisionDistrict"
+      <SideBar :countryInfo="countryInfo" @sent-division-district="receiveDivisionDistrict"
         @add-division='handleAddDivision'></SideBar>
     </div>
     <div class="lg:col-span-10 md:col-span-10 sm:col-span-12">

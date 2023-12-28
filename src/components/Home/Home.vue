@@ -13,31 +13,29 @@ const props = defineProps({
     }
 });
 
-
 const { divisionInfo } = toRefs(props);
 const { districtInfo } = toRefs(props);
 
 const emit = defineEmits();
 
-const handleDivisionClick = () => {
+const handleDivisionClick = (newDivision) => {
     // console.log("Home Component click");
-    emit('add-division');
+    emit('add-division', newDivision);
+    // console.log(newDivision)
+    
 }
-
 </script>
 
 <template>
     <!-- <p v-if="divisionDistrictInfo === null"></p> -->
     <div>
-        <DashBoardHome
+        <DashBoardHome 
         :divisionInfo="divisionInfo" 
-        :districtInfo="districtInfo"
-        @add-division="handleDivisionClick"
-        ></DashBoardHome>
+        :districtInfo="districtInfo" 
+        @add-division="handleDivisionClick"></DashBoardHome>
     </div>
 
 
-<!-- {{ divisionDistrictInfo }} -->
+    <!-- {{ divisionDistrictInfo }} -->
 </template>
-<style>
-</style>
+<style></style>

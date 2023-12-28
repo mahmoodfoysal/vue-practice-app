@@ -5,27 +5,11 @@ const props = defineProps({
         type: Array,
         default: null
     },
-    handleAddDivision: {
-        type: Function,
-        default: () => { }
-    }
 });
 
 const activeIndex = ref(null);
 const { countryInfo } = toRefs(props);
 const emit = defineEmits();
-
-const handleAddDivision = () => {
-    // divisionInfo.value.push({
-    //     div_id: div_id.value,
-    //     division_name: div_name.value,
-    // });
-
-    // div_id.value = '';
-    // div_name.value = '';
-    console.log("Side bar Clicks")
-    emit('handelDivision')
-}
 
 const handleDistrictIfo = (division, district, index) => {
     emit('sent-division-district', division, district);

@@ -16,9 +16,12 @@ const { divisionInfo } = toRefs(props);
 const { districtInfo } = toRefs(props);
 const emit = defineEmits();
 
-// ----------------------------------------all ref declare here ------------------------------------------
+// --------------------
+// all ref declare here
+// --------------------
 
 // ---------------------------------------information ref start ---------------------------------------
+
 const id = ref(null);
 const person = ref('');
 const age = ref(null);
@@ -26,12 +29,18 @@ const address = ref('');
 const designation = ref('');
 const url = ref('');
 const district = ref('');
+
 // -----------------------------------------information ref end----------------------------------------
 
 // ------------------------------------------division ref start-----------------------------------------
 const div_id = ref(null);
 const div_name = ref('');
 // -----------------------------------------division ref end-------------------------------------------
+
+// ------------------------------------------district ref start-----------------------------------------
+const dis_id = ref(null);
+const district_name = ref('');
+// -----------------------------------------district ref end-------------------------------------------
 
 //---------------------------------- change form by button click start----------------------------------
 const selectedForm = ref(0);
@@ -65,32 +74,29 @@ const handleAddEmployeeInfo = () => {
 
 // ------------------------------------------division handler start---------------------------------------------
 const handleAddDivision = () => {
-    // divisionInfo.value.push({
-    //     div_id: div_id.value,
-    //     division_name: div_name.value,
-    // });
+    const newDivision = {
+        div_id: div_id.value,
+        division_name: div_name.value,
+    };
+    emit('add-division', newDivision);
+    div_id.value = '';
+    div_name.value = '';
 
-    // div_id.value = '';
-    // div_name.value = '';
-    emit('add-division');
-    console.log("Dashboard Component")
+
 }
 // -------------------------------------------division handler end-----------------------------------------------
-
 </script>
 <template>
     <div>
         <section class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
             <!-- button group -->
-            <button v-if="districtInfo && divisionInfo !== null" 
-            @click="visulizeForm(1)" type="button"
+            <button v-if="districtInfo && divisionInfo !== null" @click="visulizeForm(1)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 Employee</button>
             <button @click="visulizeForm(2)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 Division</button>
-            <button v-if="districtInfo && divisionInfo !== null" 
-            @click="visulizeForm(3)" type="button"
+            <button v-if="districtInfo && divisionInfo !== null" @click="visulizeForm(3)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 District</button>
         </section>
@@ -159,14 +165,14 @@ const handleAddDivision = () => {
                     <div>
                         <label for="first_name"
                             class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">ID</label>
-                        <input type="Number" id="first_name id-field'"
+                        <input v-model.number="div_id" type="Number" id="first_name id-field'"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Enter Division ID" required>
                     </div>
                     <div>
                         <label for="last_name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Division
                             Name</label>
-                        <input type="text" id="last_name"
+                        <input v-model="div_name" type="text" id="last_name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Enter Division Name" required>
                     </div>
