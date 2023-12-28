@@ -1,6 +1,10 @@
 <script setup>
 import { toRefs, ref } from 'vue';
 
+// *****************************
+// all props declare here
+// *****************************
+
 const props = defineProps({
     divisionInfo: {
         type: Object,
@@ -12,16 +16,27 @@ const props = defineProps({
     }
 });
 
+// *****************************
+// all torRefs declare here
+// *****************************
+
 const { divisionInfo } = toRefs(props);
 const { districtInfo } = toRefs(props);
+
+// *****************************
+// all emit declare here
+// *****************************
+
 const emit = defineEmits();
 
-// ********************
+// ****************************
 // all ref declare here
-// ********************
+// ****************************
 
-// ---------------------------------------information ref start ---------------------------------------
+// form change ref 
+const selectedForm = ref(0);
 
+// information ref
 const id = ref(null);
 const person = ref('');
 const age = ref(null);
@@ -30,27 +45,24 @@ const designation = ref('');
 const url = ref('');
 const district = ref('');
 
-// -----------------------------------------information ref end----------------------------------------
-
-// ------------------------------------------division ref start-----------------------------------------
+// division ref
 const div_id = ref(null);
 const div_name = ref('');
-// -----------------------------------------division ref end-------------------------------------------
 
-// ------------------------------------------district ref start-----------------------------------------
+// district ref
 const dis_id = ref(null);
-const district_name = ref('');
-// -----------------------------------------district ref end-------------------------------------------
+const dis_name = ref('');
 
-//---------------------------------- change form by button click start----------------------------------
-const selectedForm = ref(0);
+// ************************************
+// all event handler declare here
+// ************************************
+
+// form change event handler 
 const visulizeForm = (formNo) => {
     selectedForm.value = formNo;
 }
-//---------------------------------- change form by button click end-------------------------------------
 
-// -----------------------------------all event handler declare here-------------------------------------- 
-// ---------------------------------employee information handler start ------------------------------------
+// add Employee event handler 
 const handleAddEmployeeInfo = () => {
     districtInfo.value.info.push({
         id: id.value,
@@ -70,9 +82,8 @@ const handleAddEmployeeInfo = () => {
     url.value = '';
     district.value = '';
 }
-//------------------------------------ employee information handler end-----------------------------------------
 
-// ------------------------------------------division handler start---------------------------------------------
+// add division event handler 
 const handleAddDivision = () => {
     const newDivision = {
         div_id: div_id.value,
@@ -81,9 +92,18 @@ const handleAddDivision = () => {
     emit('add-division', newDivision);
     div_id.value = '';
     div_name.value = '';
-
 }
-// -------------------------------------------division handler end-----------------------------------------------
+
+// add district event handler 
+const handleDistrictAdd = () => {
+    const newDistrict = {
+        dis_id: dis_id.value,
+        district_name: dis_name.value,
+    }
+    emit("add-district", newDistrict);
+    dis_id.value ='';
+    dis_name.value ='';
+}
 </script>
 <template>
     <div>
@@ -100,8 +120,12 @@ const handleAddDivision = () => {
                 District</button>
         </section>
 
-        <!----------------------------------- all form code written here Start------------------------------------------->
+        <!-- ********************************* 
+            all form code written here Start
+            ***********************************-->
+
         <section class="mb-2">
+            <!-- add employee form start  -->
             <form v-if="selectedForm === 1" @submit.prevent="handleAddEmployeeInfo">
                 <div class="mx-4 grid gap-2 mb-4 md:grid-cols-2">
                     <div>
@@ -157,8 +181,9 @@ const handleAddDivision = () => {
                 <button type="submit"
                     class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </form>
+            <!-- add employee form end  -->
 
-            <!-- ----------------------------------- Division Form Start----------------------------------------------  -->
+            <!--  Division Form Start  -->
             <form v-if="selectedForm === 2" @submit.prevent="handleAddDivision">
                 <div class="mx-4 grid gap-2 mb-4 md:grid-cols-2">
                     <div>
@@ -179,23 +204,24 @@ const handleAddDivision = () => {
                 <button type="submit"
                     class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </form>
-            <!-- ----------------------------------- Division Form End----------------------------------------------  -->
+            <!--  Division Form End  -->
 
-
-            <!-- ----------------------------------- District Form Start--------------------------------------------  -->
-            <form v-if="selectedForm === 3">
+            <!-- District Form Start  -->
+            <form 
+            v-if="selectedForm === 3"
+            @submit.prevent="handleDistrictAdd">
                 <div class="mx-4 grid gap-2 mb-4 md:grid-cols-2">
                     <div>
                         <label for="first_name"
                             class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">ID</label>
-                        <input type="Number" id="first_name id-field'"
+                        <input v-model.number="dis_id" type="Number" id="first_name id-field'"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Enter District ID" required>
                     </div>
                     <div>
                         <label for="last_name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">District
                             Name</label>
-                        <input type="text" id="last_name"
+                        <input v-model="dis_name" type="text" id="last_name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Enter District Name" required>
                     </div>
@@ -203,13 +229,14 @@ const handleAddDivision = () => {
                 <button type="submit"
                     class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </form>
-            <!-- ----------------------------------- Division Form End----------------------------------------------  -->
+            <!-- Division Form End -->
 
 
         </section>
-        <!----------------------------------- all form code written here end ------------------------------------------------->
+        <!-- ********************************* 
+            all form code written here end
+            ***********************************-->
 
-        <!-- <h1 class="text-3xl text-center">Please select Your District</h1> -->
         <section class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
             <div class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
                 <!-- <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Dashboard</h4>  -->
@@ -271,12 +298,15 @@ const handleAddDivision = () => {
                                 {{ disInfo.district }}
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
 
             <!-- table end -->
+
+                    <!-- ********************************* 
+            dashboard features
+            ***********************************-->
 
             <!-- value, user, ticket  -->
             <!-- dashboard features start -->

@@ -1,5 +1,9 @@
 <script setup>
 import { toRefs, defineEmits, ref } from 'vue';
+
+// *****************************
+// all props declare here
+// *****************************
 const props = defineProps({
     countryInfo: {
         type: Array,
@@ -7,10 +11,20 @@ const props = defineProps({
     },
 });
 
+// **********************************
+// all ref and toRefs declare here
+// **********************************
 const activeIndex = ref(null);
 const { countryInfo } = toRefs(props);
+
+// *****************************
+// emit declare here
+// *****************************
 const emit = defineEmits();
 
+// **********************************
+// all event handler declare here
+// **********************************
 const handleDistrictIfo = (division, district, index) => {
     emit('sent-division-district', division, district);
     activeIndex.value = index;
@@ -75,11 +89,5 @@ const handleDistrictIfo = (division, district, index) => {
 .font-side {
     font-family: 'Heebo', sans-serif;
     font-size: 14px;
-}
-
-li.selected {
-    background-color: #3498db;
-    /* Change this to the desired background color */
-    color: #fff;
 }
 </style>
