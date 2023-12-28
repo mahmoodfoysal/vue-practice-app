@@ -16,9 +16,9 @@ const { divisionInfo } = toRefs(props);
 const { districtInfo } = toRefs(props);
 const emit = defineEmits();
 
-// --------------------
+// ********************
 // all ref declare here
-// --------------------
+// ********************
 
 // ---------------------------------------information ref start ---------------------------------------
 
@@ -81,7 +81,6 @@ const handleAddDivision = () => {
     emit('add-division', newDivision);
     div_id.value = '';
     div_name.value = '';
-
 
 }
 // -------------------------------------------division handler end-----------------------------------------------
