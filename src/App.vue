@@ -10,7 +10,8 @@ import { ref } from 'vue';
 // ***************************
 const receivedDivision = ref(null);
 const receivedDistrict = ref(null);
-const receivedClickDiv = ref(null)
+const receivedClickDiv = ref(null);
+const receivedDistrictInput = ref(null)
 const countryInfo = ref(null);
 
 // ***************************
@@ -56,10 +57,11 @@ const handleAddDistrict = (newDistrict, match_division) => {
   const division = countryInfo.value.find(div => div.div_id === match_division.div_id);
   if (division) {
     const district = division?.division_information;
-    const divisionInformation = ref(division ? division.division_information : null);
+    receivedDistrictInput.value = district;
+    // const divisionInformation = ref(division ? division.division_information : null);
     console.log(district);
-    if (divisionInformation.value) {
-      divisionInformation.value.push({
+    if (receivedDistrictInput.value) {
+      receivedDistrictInput.value.push({
         dis_id: newDistrict.dis_id,
         district_name: newDistrict.district_name,
         info: [],
@@ -71,7 +73,7 @@ const handleAddDistrict = (newDistrict, match_division) => {
     }
   }
 };
-
+ 
 </script>
 
 <template>

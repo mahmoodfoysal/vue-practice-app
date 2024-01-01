@@ -16,7 +16,7 @@ const props = defineProps({
     },
     divisionClickInfo: {
         type: String,
-        default:null
+        default: null
     }
 });
 
@@ -26,7 +26,7 @@ const props = defineProps({
 
 const { divisionInfo } = toRefs(props);
 const { districtInfo } = toRefs(props);
-const {divisionClickInfo} = toRefs(props);
+const { divisionClickInfo } = toRefs(props);
 
 // *****************************
 // all emit declare here
@@ -110,9 +110,14 @@ const handleDistrictAdd = () => {
         div_id: match_div.value,
     }
     emit("add-district", newDistrict, match_division);
-    dis_id.value ='';
-    dis_name.value ='';
-    match_div.value='';
+    dis_id.value = '';
+    dis_name.value = '';
+    match_div.value = '';
+}
+
+// event handler for delete 
+const handleDelete = (id) => {
+    console.log(id)
 }
 </script>
 <template>
@@ -218,9 +223,7 @@ const handleDistrictAdd = () => {
             <!--  Division Form End  -->
 
             <!-- District Form Start  -->
-            <form 
-            v-if="selectedForm === 3"
-            @submit.prevent="handleDistrictAdd">
+            <form v-if="selectedForm === 3" @submit.prevent="handleDistrictAdd">
                 <div class="mx-4 grid gap-2 mb-4 md:grid-cols-2">
                     <div>
                         <label for="first_name"
@@ -255,7 +258,8 @@ const handleDistrictAdd = () => {
             all form code written here end
             ***********************************-->
 
-        <section v-if="districtInfo && divisionInfo !== null" class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
+        <section v-if="districtInfo && divisionInfo !== null"
+            class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
             <div class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
                 <!-- <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Dashboard</h4>  -->
                 <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Division: {{ divisionInfo?.division_name }}</h4>
@@ -289,6 +293,9 @@ const handleDistrictAdd = () => {
                             <th scope="col" class="px-6 py-3">
                                 District
                             </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -315,6 +322,12 @@ const handleDistrictAdd = () => {
                             <td class="px-6 py-2">
                                 {{ disInfo.district }}
                             </td>
+                            <td class="px-6 py-2">
+                                <div class="flex justify-between">
+                                    <span class="material-icons cursor-pointer">edit</span>
+                                    <span @click="handleDelete(disInfo.id)" class="material-icons cursor-pointer">delete</span>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -323,7 +336,7 @@ const handleDistrictAdd = () => {
 
             <!-- table end -->
 
-                    <!-- ********************************* 
+            <!-- ********************************* 
             dashboard features
             ***********************************-->
 
