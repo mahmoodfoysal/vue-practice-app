@@ -13,6 +13,10 @@ const props = defineProps({
     districtInfo: {
         type: Object,
         default: null,
+    },
+    divisionClickInfo: {
+        type: String,
+        default: null,
     }
 });
 
@@ -22,6 +26,7 @@ const props = defineProps({
 
 const { divisionInfo } = toRefs(props);
 const { districtInfo } = toRefs(props);
+const {divisionClickInfo} = toRefs(props);
 
 // ********************************* 
 // emit declare here
@@ -47,6 +52,7 @@ const handleDistrictClick = (newDistrict, match_division) => {
         <DashBoardHome 
         :divisionInfo="divisionInfo" 
         :districtInfo="districtInfo" 
+        :divisionClickInfo="divisionClickInfo"
         @add-division="handleDivisionClick"
         @add-district="handleDistrictClick"
         ></DashBoardHome>

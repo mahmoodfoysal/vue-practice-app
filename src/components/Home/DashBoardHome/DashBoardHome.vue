@@ -13,6 +13,10 @@ const props = defineProps({
     districtInfo: {
         type: Object,
         default: null
+    },
+    divisionClickInfo: {
+        type: String,
+        default:null
     }
 });
 
@@ -22,6 +26,7 @@ const props = defineProps({
 
 const { divisionInfo } = toRefs(props);
 const { districtInfo } = toRefs(props);
+const {divisionClickInfo} = toRefs(props);
 
 // *****************************
 // all emit declare here
@@ -52,7 +57,7 @@ const div_name = ref('');
 // district ref
 const dis_id = ref(null);
 const dis_name = ref('');
-const match_div = ref('');
+const match_div = ref(null);
 
 // ************************************
 // all event handler declare here
@@ -102,16 +107,17 @@ const handleDistrictAdd = () => {
         district_name: dis_name.value,
     };
     const match_division = {
-        match_div: match_div.value,
+        div_id: match_div.value,
     }
-    
     emit("add-district", newDistrict, match_division);
     dis_id.value ='';
     dis_name.value ='';
+    match_div.value='';
 }
 </script>
 <template>
     <div>
+        <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Division: {{ divisionClickInfo }}</h4>
         <section class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
             <!-- button group -->
             <button v-if="districtInfo && divisionInfo !== null" @click="visulizeForm(1)" type="button"
@@ -120,7 +126,7 @@ const handleDistrictAdd = () => {
             <button @click="visulizeForm(2)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 Division</button>
-            <button v-if="districtInfo && divisionInfo !== null" @click="visulizeForm(3)" type="button"
+            <button @click="visulizeForm(3)" type="button"
                 class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
                 District</button>
         </section>
@@ -232,10 +238,10 @@ const handleDistrictAdd = () => {
                     </div>
                     <div>
                         <label for="last_name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Division
-                            Name</label>
-                        <input v-model="match_div" type="text" id="last_name"
+                            ID</label>
+                        <input v-model.number="match_div" type="number" id="last_name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Enter District Name" required>
+                            placeholder="Enter District Name">
                     </div>
                 </div>
                 <button type="submit"
@@ -249,7 +255,7 @@ const handleDistrictAdd = () => {
             all form code written here end
             ***********************************-->
 
-        <section class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
+        <section v-if="districtInfo && divisionInfo !== null" class="main-container bg-[#F3F4F6] rounded-lg w-[100%] h-[100%] overflow-hidden">
             <div class="flex justify-between border-b-2 border-#e2edfa py-[20px]">
                 <!-- <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Dashboard</h4>  -->
                 <h4 class="text-2xl text-[#101833] mx-5 dashboard-text">Division: {{ divisionInfo?.division_name }}</h4>
@@ -313,6 +319,7 @@ const handleDistrictAdd = () => {
                     </tbody>
                 </table>
             </div>
+
 
             <!-- table end -->
 

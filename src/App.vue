@@ -10,8 +10,8 @@ import { ref } from 'vue';
 // ***************************
 const receivedDivision = ref(null);
 const receivedDistrict = ref(null);
+const receivedClickDiv = ref(null)
 const countryInfo = ref(null);
-const districtAddInfo = ref(null);
 
 // ***************************
 // emit declare here
@@ -24,32 +24,53 @@ const emit = defineEmits();
 // ***************************
 
 countryInfo.value = bangladesh;
-// districtAddInfo.value = bangladesh[0].division_information;
-districtAddInfo.value = bangladesh;
-console.log(districtAddInfo.value);
-
-
-
-// console.log(bangladesh[0].division_name.toLowerCase());
 
 // ***************************
 // event handler declare here
 // ***************************
 
+// event handler for division and district information from sidebar props 
 const receiveDivisionDistrict = (divison, district) => {
   receivedDivision.value = divison;
   receivedDistrict.value = district;
 };
 
-const handleAddDivision = (newDivision) => {
-  countryInfo.value.push(newDivision);
+// event handler for division information string from sidebar 
+const receivedClickDivision = (div) => {
+  receivedClickDiv.value = div;
 }
 
-const handleAddDistrict = (newDistrict, match_division) => {
-  // if(districtAddInfo.division_name)
-  districtAddInfo.value.push(newDistrict);
-  // console.log(match_division);
+// event handler for push division for main array 
+const handleAddDivision = (newDivision) => {
+  countryInfo.value.push({
+    div_id: newDivision.div_id,
+    division_name: newDivision.division_name,
+    division_information: []
+  });
 }
+console.log(bangladesh)
+console.log(bangladesh) 
+
+// event handler for push district main array 
+const handleAddDistrict = (newDistrict, match_division) => {
+  const division = countryInfo.value.find(div => div.div_id === match_division.div_id);
+  if (division) {
+    const district = division?.division_information;
+    const divisionInformation = ref(division ? division.division_information : null);
+    console.log(district);
+    if (divisionInformation.value) {
+      divisionInformation.value.push({
+        dis_id: newDistrict.dis_id,
+        district_name: newDistrict.district_name,
+        info: [],
+    });
+      
+    }
+    else {
+      console.log(`Division information not found for division with ID:`);
+    }
+  }
+};
 
 </script>
 
@@ -60,6 +81,7 @@ const handleAddDistrict = (newDistrict, match_division) => {
       :handleAddDistrict = "handleAddDistrict" 
       :countryInfo="countryInfo" 
       @sent-division-district="receiveDivisionDistrict"
+      @sent-division="receivedClickDivision"
       ></SideBar>
     </div>
     <div class="lg:col-span-10 md:col-span-10 sm:col-span-12">
@@ -68,6 +90,7 @@ const handleAddDistrict = (newDistrict, match_division) => {
       <Home 
       :divisionInfo="receivedDivision" 
       :districtInfo="receivedDistrict" 
+      :divisionClickInfo = "receivedClickDiv"
       @add-division="handleAddDivision"
       @add-district="handleAddDistrict"
       ></Home>
