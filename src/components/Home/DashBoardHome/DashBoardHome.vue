@@ -48,7 +48,6 @@ const age = ref(null);
 const address = ref('');
 const designation = ref('');
 const url = ref('');
-const district = ref('');
 
 // division ref
 const div_id = ref(null);
@@ -58,6 +57,14 @@ const div_name = ref('');
 const dis_id = ref(null);
 const dis_name = ref('');
 const match_div = ref(null);
+
+// update information ref 
+let updateID = ref(null);
+let updatePerson = ref('');
+let updateAge = ref('');
+let updateAddress = ref('');
+let updateDesignation = ref('');
+let updateUrl = ref('');
 
 // ************************************
 // all event handler declare here
@@ -77,7 +84,6 @@ const handleAddEmployeeInfo = () => {
         address: address.value,
         designation: designation.value,
         image: url.value,
-        district: district.value,
     });
 
     id.value = '';
@@ -86,7 +92,6 @@ const handleAddEmployeeInfo = () => {
     address.value = '';
     designation.value = '';
     url.value = '';
-    district.value = '';
 }
 
 // add division event handler 
@@ -117,13 +122,26 @@ const handleDistrictAdd = () => {
 
 // event handler for delete 
 const handleDeleteEmployee = (div, dis, id) => {
-    emit('handle-emp-delete', div, dis, id)
+    emit('handle-emp-delete', div, dis, id);
 }
 
 // event handler for edit 
-const handleEditEmployee = (empInfo) => {
-    const {id, person, age, address, designation, district, image} = empInfo;
-    console.log("Employee Information", id, person, age, address, designation, district, image);
+const handleEditEmployee = (divInfo, distInfo, empInfo, disInfo) => {
+    const { id, person, age, address, designation, image } = disInfo;
+    console.log(id)
+        updateID = id;
+        updatePerson = person;
+        updateAge = age;
+        updateAddress = address;
+        updateDesignation = designation;
+        updateUrl = image;
+        handleUpdateEmployee(divInfo, distInfo, empInfo, disInfo);
+
+}
+
+// event handler for edit 
+const handleUpdateEmployee = (divInfo, distInfo, empInfo) => {
+    emit('handle-edit-emp-info', divInfo, distInfo, empInfo);
 }
 </script>
 <template>
@@ -192,18 +210,61 @@ const handleEditEmployee = (empInfo) => {
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Enter Photo URL" required>
                     </div>
+                </div>
+                <button v-show="selectedForm === 1" type="submit"
+                    class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            </form>
+
+            <!-- add employee form end  -->
+            <form v-if="selectedForm === 4" @submit.prevent="handleUpdateEmployee">
+                <div class="mx-4 grid gap-2 mb-4 md:grid-cols-2">
+                    <div>
+                        <label for="first_name"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">ID</label>
+                        <input v-model.number="updateID" disabled type="Number" id="first_name id-field'"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Enter Person ID" required>
+                    </div>
+                    <div>
+                        <label for="last_name"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Person</label>
+                        <input v-model="updatePerson" type="text" id="last_name"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Enter Person Full Name" required>
+                    </div>
+                    <div>
+                        <label for="company"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Age</label>
+                        <input v-model.number="updateAge" type="number" id="company"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Enter Person Age" required>
+                    </div>
+                    <div>
+                        <label for="phone"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                        <input v-model="updateAddress" type="text" id="last_name"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Enter Person Full Name" required>
+                    </div>
+                    <div>
+                        <label for="website"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Designation</label>
+                        <input v-model="updateDesignation" type="text" id="website"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Enter Person Designation" required>
+                    </div>
                     <div>
                         <label for="visitors"
-                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">District</label>
-                        <input v-model="district" type="text" id="visitors"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
+                        <input v-model="updateUrl" type="text" id="visitors"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Enter Person District" required>
+                            placeholder="Enter Photo URL" required>
                     </div>
                 </div>
                 <button type="submit"
-                    class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
             </form>
-            <!-- add employee form end  -->
+            <!-- update employee form end  -->
 
             <!--  Division Form Start  -->
             <form v-if="selectedForm === 2" @submit.prevent="handleAddDivision">
@@ -297,9 +358,6 @@ const handleEditEmployee = (empInfo) => {
                                 Photo
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                District
-                            </th>
-                            <th scope="col" class="px-6 py-3">
                                 Action
                             </th>
                         </tr>
@@ -325,13 +383,15 @@ const handleEditEmployee = (empInfo) => {
                             <td class="px-6 py-2">
                                 Dummy Photo
                             </td>
-                            <td class="px-6 py-2">
-                                {{ disInfo.district }}
-                            </td>
+
                             <td class="px-6 py-2">
                                 <div class="flex justify-between">
-                                    <span @click="handleEditEmployee(disInfo)" class="material-icons cursor-pointer">edit</span>
-                                    <span @click="handleDeleteEmployee(divisionInfo?.division_name, districtInfo?.district_name, disInfo.id)" class="material-icons cursor-pointer">delete</span>
+                                    <span
+                                        @click="handleEditEmployee(divisionInfo?.division_name, districtInfo?.district_name, disInfo.id, disInfo), visulizeForm(4)"
+                                        class="material-icons cursor-pointer">edit</span>
+                                    <span
+                                        @click="handleDeleteEmployee(divisionInfo?.division_name, districtInfo?.district_name, disInfo.id)"
+                                        class="material-icons cursor-pointer">delete</span>
                                 </div>
                             </td>
                         </tr>

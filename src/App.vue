@@ -87,6 +87,11 @@ const handleEmpDelete = (div, dis, empid) => {
   }
 }
 
+// update employee informaton 
+const handleUpdateEmpInfo = (divInfo, disInfo, empInfo) => {
+  console.log(divInfo, disInfo, empInfo)
+}
+
 </script>
 
 <template>
@@ -99,7 +104,9 @@ const handleEmpDelete = (div, dis, empid) => {
       <NavBar></NavBar>
       <!-- Main Section -->
       <Home :divisionInfo="receivedDivision" :districtInfo="receivedDistrict" :divisionClickInfo="receivedClickDiv"
-        @add-division="handleAddDivision" @add-district="handleAddDistrict" @handle-emp-delete="handleEmpDelete"></Home>
+        @add-division="handleAddDivision" @add-district="handleAddDistrict" @handle-emp-delete="handleEmpDelete"
+        @handle-edit-emp-info="handleUpdateEmpInfo"
+        ></Home>
     </div>
   </div>
 </template>
