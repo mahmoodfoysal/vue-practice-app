@@ -116,8 +116,8 @@ const handleDistrictAdd = () => {
 }
 
 // event handler for delete 
-const handleDelete = (id) => {
-    console.log(id)
+const handleDeleteEmployee = (div, dis, id) => {
+    emit('handle-emp-delete', div, dis, id)
 }
 </script>
 <template>
@@ -325,7 +325,7 @@ const handleDelete = (id) => {
                             <td class="px-6 py-2">
                                 <div class="flex justify-between">
                                     <span class="material-icons cursor-pointer">edit</span>
-                                    <span @click="handleDelete(disInfo.id)" class="material-icons cursor-pointer">delete</span>
+                                    <span @click="handleDeleteEmployee(divisionInfo?.division_name, districtInfo?.district_name, disInfo.id)" class="material-icons cursor-pointer">delete</span>
                                 </div>
                             </td>
                         </tr>

@@ -7,7 +7,9 @@ import { toRefs, defineEmits, ref } from 'vue';
 const props = defineProps({
     countryInfo: {
         type: Array,
-        default: null
+        default() {
+        return []
+      }
     },
 });
 
@@ -34,17 +36,18 @@ const handleDivisionInfo = (div) => {
     const { division_name } = div;
     emit('sent-division', division_name);
 }
-
 </script>
 <template>
-    <section class="layout-sidebar deviation-list w-[100%] px-2 pt-[5px]">
+
+
+    <section class="layout-sidebar deviation-list w-[100%] px-2 pt-[5px]" v-if="countryInfo">
         <div id="accordion-collapse" data-accordion="collapse">
-            <div v-for="division in countryInfo" :key="division?.div_id">
-                <h2 :id="`accordion-collapse-heading-${division?.div_id}`">
+            <div v-for="(division, Cindex) in countryInfo" :key="Cindex">
+                <h2 :id="`accordion-collapse-heading-${Cindex}`">
                     <button @click="handleDivisionInfo(division)" type="button"
                         class="flex items-center justify-between w-full p-2 font-medium rtl:text-right text-gray-500   border-gray-200 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 focus:rounded-[12px] dark:hover:bg-gray-800 gap-3"
-                        :data-accordion-target="`#accordion-collapse-body-${division?.div_id}`" aria-expanded="false"
-                        :aria-controls="`accordion-collapse-body-${division?.div_id}`">
+                        :data-accordion-target="`#accordion-collapse-body-${Cindex}`" aria-expanded="false"
+                        :aria-controls="`accordion-collapse-body-${Cindex}`">
                         <span class="text-[#8E949F] font-side">{{ division.division_name }}</span>
                         <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -54,8 +57,8 @@ const handleDivisionInfo = (div) => {
                     </button>
                 </h2>
 
-                <div :id="`accordion-collapse-body-${division.div_id}`" class="hidden"
-                    :aria-labelledby="`accordion-collapse-heading-${division.div_id}`">
+                <div :id="`accordion-collapse-body-${Cindex}`" class="hidden"
+                    :aria-labelledby="`accordion-collapse-heading-${Cindex}`">
                     <div class="p-2 dark:border-gray-700 dark:bg-gray-900">
                         <ul v-for="(district, index) in division?.division_information" :key="index"
                             class="sub-menu font-side">

@@ -1,6 +1,6 @@
 <script setup>
-import SideBar from './components/SideBar/SideBar.vue';
 import NavBar from './components/NavBar/NavBar.vue';
+import SideBar from './components/SideBar/SideBar.vue';
 import Home from './components/Home/Home.vue';
 import bangladesh from '/data/bangladesh.json';
 import { ref } from 'vue';
@@ -49,8 +49,6 @@ const handleAddDivision = (newDivision) => {
     division_information: []
   });
 }
-console.log(bangladesh)
-console.log(bangladesh) 
 
 // event handler for push district main array 
 const handleAddDistrict = (newDistrict, match_division) => {
@@ -65,37 +63,43 @@ const handleAddDistrict = (newDistrict, match_division) => {
         dis_id: newDistrict.dis_id,
         district_name: newDistrict.district_name,
         info: [],
-    });
-      
+      });
+
     }
     else {
       console.log(`Division information not found for division with ID:`);
     }
   }
 };
- 
+
+const handleEmpDelete = (div, dis, empid) => {
+  const division = countryInfo.value.find(divi => divi.division_name === div);
+  if (division) {
+    const district = division.division_information.find(dist => dist.district_name === dis);
+    if (district) {
+      const EmployeeRemove = district.info.findIndex(person => person.id === empid);
+      if (EmployeeRemove !== -1) {
+        if ((confirm("Are you sure! Want to delete employee?") == true)) {
+          district.info.splice(EmployeeRemove, 1);
+        }
+      }
+    }
+  }
+}
+
 </script>
 
 <template>
   <div class="grid lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12 ">
     <div class="lg:col-span-2 md:col-span-2 invisible md:visible lg:visible lg:relative md:relative mobile-view absolute">
-      <SideBar
-      :handleAddDistrict = "handleAddDistrict" 
-      :countryInfo="countryInfo" 
-      @sent-division-district="receiveDivisionDistrict"
-      @sent-division="receivedClickDivision"
-      ></SideBar>
+      <SideBar :handleAddDistrict="handleAddDistrict" :countryInfo="countryInfo"
+        @sent-division-district="receiveDivisionDistrict" @sent-division="receivedClickDivision"></SideBar>
     </div>
     <div class="lg:col-span-10 md:col-span-10 sm:col-span-12">
       <NavBar></NavBar>
       <!-- Main Section -->
-      <Home 
-      :divisionInfo="receivedDivision" 
-      :districtInfo="receivedDistrict" 
-      :divisionClickInfo = "receivedClickDiv"
-      @add-division="handleAddDivision"
-      @add-district="handleAddDistrict"
-      ></Home>
+      <Home :divisionInfo="receivedDivision" :districtInfo="receivedDistrict" :divisionClickInfo="receivedClickDiv"
+        @add-division="handleAddDivision" @add-district="handleAddDistrict" @handle-emp-delete="handleEmpDelete"></Home>
     </div>
   </div>
 </template>

@@ -45,6 +45,10 @@ const handleDivisionClick = (newDivision) => {
 const handleDistrictClick = (newDistrict, match_division) => {
     emit('add-district', newDistrict, match_division);
 }
+
+const handleEmpDelete = (div, dis, id) => {
+    emit('handle-emp-delete', div, dis, id)
+}
 </script>
 
 <template>
@@ -55,6 +59,7 @@ const handleDistrictClick = (newDistrict, match_division) => {
         :divisionClickInfo="divisionClickInfo"
         @add-division="handleDivisionClick"
         @add-district="handleDistrictClick"
+        @handle-emp-delete="handleEmpDelete"
         ></DashBoardHome>
     </div>
 </template>
