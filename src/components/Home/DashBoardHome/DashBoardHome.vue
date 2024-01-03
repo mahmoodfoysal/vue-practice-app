@@ -128,20 +128,27 @@ const handleDeleteEmployee = (div, dis, id) => {
 // event handler for edit 
 const handleEditEmployee = (divInfo, distInfo, empInfo, disInfo) => {
     const { id, person, age, address, designation, image } = disInfo;
-    console.log(id)
-        updateID = id;
-        updatePerson = person;
-        updateAge = age;
-        updateAddress = address;
-        updateDesignation = designation;
-        updateUrl = image;
-        handleUpdateEmployee(divInfo, distInfo, empInfo, disInfo);
-
+        updateID.value = id;
+        updatePerson.value = person;
+        updateAge.value = age;
+        updateAddress.value = address;
+        updateDesignation.value = designation;
+        updateUrl.value = image;
+        
+        handleUpdateEmployee(divInfo, distInfo, empInfo);
 }
 
 // event handler for edit 
 const handleUpdateEmployee = (divInfo, distInfo, empInfo) => {
-    emit('handle-edit-emp-info', divInfo, distInfo, empInfo);
+    const updateInfo = {
+        id: updateID.value,
+        person: updatePerson.value,
+        age: updateAge.value,
+        address: updateAddress.value,
+        designation :updateDesignation.value,
+        url: updateUrl.value
+    };
+    emit('handle-edit-emp-info', divInfo, distInfo, empInfo, updateInfo);
 }
 </script>
 <template>

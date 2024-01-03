@@ -50,8 +50,8 @@ const handleEmpDelete = (div, dis, id) => {
     emit('handle-emp-delete', div, dis, id)
 }
 
-const handleUpdateEmpInfo = (divInfo, disInfo, empInfo) => {
-    emit('handle-edit-emp-info', divInfo, disInfo, empInfo);
+const handleUpdateEmpInfo = (divInfo, disInfo, empInfo, updateInfo) => {
+    emit('handle-edit-emp-info', divInfo, disInfo, empInfo, updateInfo);
 }
 </script>
 

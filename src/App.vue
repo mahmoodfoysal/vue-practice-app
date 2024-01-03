@@ -56,7 +56,6 @@ const handleAddDistrict = (newDistrict, match_division) => {
   if (division) {
     const district = division?.division_information;
     receivedDistrictInput.value = district;
-    // const divisionInformation = ref(division ? division.division_information : null);
     console.log(district);
     if (receivedDistrictInput.value) {
       receivedDistrictInput.value.push({
@@ -64,7 +63,6 @@ const handleAddDistrict = (newDistrict, match_division) => {
         district_name: newDistrict.district_name,
         info: [],
       });
-
     }
     else {
       console.log(`Division information not found for division with ID:`);
@@ -72,6 +70,7 @@ const handleAddDistrict = (newDistrict, match_division) => {
   }
 };
 
+// event handler for delete employee information 
 const handleEmpDelete = (div, dis, empid) => {
   const division = countryInfo.value.find(divi => divi.division_name === div);
   if (division) {
@@ -88,8 +87,34 @@ const handleEmpDelete = (div, dis, empid) => {
 }
 
 // update employee informaton 
-const handleUpdateEmpInfo = (divInfo, disInfo, empInfo) => {
-  console.log(divInfo, disInfo, empInfo)
+const handleUpdateEmpInfo = (divName, disName, empID, updateInfo) => {
+  // console.log(divName, disName, empID, updateInfo);
+  const divisionIndex = countryInfo.value.findIndex(div => div.division_name === divName)
+  console.log(divisionIndex);
+  if (divisionIndex !== -1) {
+    const division = bangladesh[divisionIndex];
+    console.log(division);
+    const districtIndex = division?.division_information.findIndex(dist => dist.district_name === disName);
+    console.log(districtIndex);
+    if (districtIndex !== -1) {
+      const district = division.division_information[districtIndex];
+      console.log(district);
+      const indexToUpdate = district.info.findIndex(person => person.id === empID);
+      console.log(indexToUpdate);
+      if (indexToUpdate !== -1) {
+        if((confirm('Are You sure update') == true)) {
+          district.info.splice(indexToUpdate, 1, {
+          // id: updateInfo.id,
+          person: updateInfo.person,
+          age: updateInfo.age,
+          address: updateInfo.address,
+          designation: updateInfo.designation,
+          image: updateInfo.url,
+        });
+        }
+      }
+    }
+  }
 }
 
 </script>
@@ -105,8 +130,7 @@ const handleUpdateEmpInfo = (divInfo, disInfo, empInfo) => {
       <!-- Main Section -->
       <Home :divisionInfo="receivedDivision" :districtInfo="receivedDistrict" :divisionClickInfo="receivedClickDiv"
         @add-division="handleAddDivision" @add-district="handleAddDistrict" @handle-emp-delete="handleEmpDelete"
-        @handle-edit-emp-info="handleUpdateEmpInfo"
-        ></Home>
+        @handle-edit-emp-info="handleUpdateEmpInfo"></Home>
     </div>
   </div>
 </template>
