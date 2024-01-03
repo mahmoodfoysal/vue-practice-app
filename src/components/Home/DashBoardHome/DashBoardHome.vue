@@ -125,6 +125,8 @@ const handleDeleteEmployee = (div, dis, id) => {
     emit('handle-emp-delete', div, dis, id);
 }
 
+let editableData = {}
+
 // event handler for edit 
 const handleEditEmployee = (divInfo, distInfo, empInfo, disInfo) => {
     const { id, person, age, address, designation, image } = disInfo;
@@ -134,12 +136,18 @@ const handleEditEmployee = (divInfo, distInfo, empInfo, disInfo) => {
         updateAddress.value = address;
         updateDesignation.value = designation;
         updateUrl.value = image;
+
+        editableData = {
+            divInfo,
+            distInfo,
+            empInfo,
+        }
         
-        handleUpdateEmployee(divInfo, distInfo, empInfo);
+        //handleUpdateEmployee(divInfo, distInfo, empInfo);
 }
 
-// event handler for edit 
-const handleUpdateEmployee = (divInfo, distInfo, empInfo) => {
+// event handler for update 
+const handleUpdateEmployee = () => {
     const updateInfo = {
         id: updateID.value,
         person: updatePerson.value,
@@ -148,7 +156,9 @@ const handleUpdateEmployee = (divInfo, distInfo, empInfo) => {
         designation :updateDesignation.value,
         url: updateUrl.value
     };
+    const  { divInfo, distInfo, empInfo } = editableData;
     emit('handle-edit-emp-info', divInfo, distInfo, empInfo, updateInfo);
+    editableData = {}
 }
 </script>
 <template>
