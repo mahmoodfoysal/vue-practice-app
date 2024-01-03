@@ -12,6 +12,7 @@ const receivedDivision = ref(null);
 const receivedDistrict = ref(null);
 const receivedClickDiv = ref(null);
 const receivedDistrictInput = ref(null)
+const receiveUpdateTargetInput = ref(null);
 const countryInfo = ref(null);
 
 // ***************************
@@ -90,21 +91,17 @@ const handleEmpDelete = (div, dis, empid) => {
 const handleUpdateEmpInfo = (divName, disName, empID, updateInfo) => {
   // console.log(divName, disName, empID, updateInfo);
   const divisionIndex = countryInfo.value.findIndex(div => div.division_name === divName)
-  console.log(divisionIndex);
   if (divisionIndex !== -1) {
     const division = bangladesh[divisionIndex];
-    console.log(division);
     const districtIndex = division?.division_information.findIndex(dist => dist.district_name === disName);
-    console.log(districtIndex);
     if (districtIndex !== -1) {
       const district = division.division_information[districtIndex];
-      console.log(district);
-      const indexToUpdate = district.info.findIndex(person => person.id === empID);
-      console.log(indexToUpdate);
+      receiveUpdateTargetInput.value = district;
+      const indexToUpdate = receiveUpdateTargetInput.value.info.findIndex(person => person.id === empID);
       if (indexToUpdate !== -1) {
         if((confirm('Are You sure update') == true)) {
-          district.info.splice(indexToUpdate, 1, {
-          // id: updateInfo.id,
+          receiveUpdateTargetInput.value.info.splice(indexToUpdate, 1, {
+          id: updateInfo.id,
           person: updateInfo.person,
           age: updateInfo.age,
           address: updateInfo.address,
