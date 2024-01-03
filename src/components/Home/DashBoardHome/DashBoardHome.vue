@@ -92,6 +92,7 @@ const handleAddEmployeeInfo = () => {
     address.value = '';
     designation.value = '';
     url.value = '';
+    visulizeForm(0);
 }
 
 // add division event handler 
@@ -103,6 +104,7 @@ const handleAddDivision = () => {
     emit('add-division', newDivision);
     div_id.value = '';
     div_name.value = '';
+    visulizeForm(0);
 }
 
 // add district event handler 
@@ -118,6 +120,7 @@ const handleDistrictAdd = () => {
     dis_id.value = '';
     dis_name.value = '';
     match_div.value = '';
+    visulizeForm(0);
 }
 
 // event handler for delete 
@@ -158,7 +161,8 @@ const handleUpdateEmployee = () => {
     };
     const  { divInfo, distInfo, empInfo } = editableData;
     emit('handle-edit-emp-info', divInfo, distInfo, empInfo, updateInfo);
-    editableData = {}
+    editableData = {};
+    visulizeForm(0);
 }
 </script>
 <template>
