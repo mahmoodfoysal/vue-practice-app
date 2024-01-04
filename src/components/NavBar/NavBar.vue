@@ -10,8 +10,6 @@ const navigation = [
     { name: 'Contact', href: '#', current: false },
     { name: 'About US', href: '#', current: false },
 ]
-
-
 const enabled = ref(false)
 </script>
 <template>

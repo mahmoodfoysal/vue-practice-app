@@ -27,19 +27,20 @@ const emit = defineEmits();
 // **********************************
 // all event handler declare here
 // **********************************
-const handleDistrictIfo = (division, district, index) => {
-    emit('sent-division-district', division, district);
-    activeIndex.value = index;
-}
 
+// event handler for division information
 const handleDivisionInfo = (div) => {
     const { division_name } = div;
     emit('sent-division', division_name);
 }
+
+// event handler for district information 
+const handleDistrictIfo = (division, district, index) => {
+    emit('sent-division-district', division, district);
+    activeIndex.value = index;
+}
 </script>
 <template>
-
-
     <section class="layout-sidebar deviation-list w-[100%] px-2 pt-[5px]" v-if="countryInfo">
         <div id="accordion-collapse" data-accordion="collapse">
             <div v-for="(division, Cindex) in countryInfo" :key="Cindex">
@@ -56,7 +57,6 @@ const handleDivisionInfo = (div) => {
                         </svg>
                     </button>
                 </h2>
-
                 <div :id="`accordion-collapse-body-${Cindex}`" class="hidden"
                     :aria-labelledby="`accordion-collapse-heading-${Cindex}`">
                     <div class="p-2 dark:border-gray-700 dark:bg-gray-900">
@@ -74,7 +74,6 @@ const handleDivisionInfo = (div) => {
         </div>
     </section>
 </template>
-
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
 

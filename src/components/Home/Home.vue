@@ -38,18 +38,22 @@ const emit = defineEmits();
 // all event handler declare here
 // ********************************* 
 
+// division event handler 
 const handleDivisionClick = (newDivision) => {
     emit('add-division', newDivision);
 }
 
+// district event handler 
 const handleDistrictClick = (newDistrict, match_division) => {
     emit('add-district', newDistrict, match_division);
 }
 
+// event handler for delete employee information 
 const handleEmpDelete = (div, dis, id) => {
     emit('handle-emp-delete', div, dis, id)
 }
 
+// event handler for update employee information 
 const handleUpdateEmpInfo = (divInfo, disInfo, empInfo, updateInfo) => {
     emit('handle-edit-emp-info', divInfo, disInfo, empInfo, updateInfo);
 }

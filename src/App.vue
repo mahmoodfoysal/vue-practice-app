@@ -119,15 +119,25 @@ const handleUpdateEmpInfo = (divName, disName, empID, updateInfo) => {
 <template>
   <div class="grid lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12 ">
     <div class="lg:col-span-2 md:col-span-2 invisible md:visible lg:visible lg:relative md:relative mobile-view absolute">
-      <SideBar :handleAddDistrict="handleAddDistrict" :countryInfo="countryInfo"
-        @sent-division-district="receiveDivisionDistrict" @sent-division="receivedClickDivision"></SideBar>
+      <SideBar 
+      :handleAddDistrict="handleAddDistrict" 
+      :countryInfo="countryInfo"
+      @sent-division-district="receiveDivisionDistrict" 
+      @sent-division="receivedClickDivision"
+      ></SideBar>
     </div>
     <div class="lg:col-span-10 md:col-span-10 sm:col-span-12">
       <NavBar></NavBar>
       <!-- Main Section -->
-      <Home :divisionInfo="receivedDivision" :districtInfo="receivedDistrict" :divisionClickInfo="receivedClickDiv"
-        @add-division="handleAddDivision" @add-district="handleAddDistrict" @handle-emp-delete="handleEmpDelete"
-        @handle-edit-emp-info="handleUpdateEmpInfo"></Home>
+      <Home 
+      :divisionInfo="receivedDivision" 
+      :districtInfo="receivedDistrict" 
+      :divisionClickInfo="receivedClickDiv"
+      @add-division="handleAddDivision" 
+      @add-district="handleAddDistrict" 
+      @handle-emp-delete="handleEmpDelete"
+      @handle-edit-emp-info="handleUpdateEmpInfo"
+      ></Home>
     </div>
   </div>
 </template>
